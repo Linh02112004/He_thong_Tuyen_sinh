@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phenikaa University</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('back.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.5);
+            z-index: 1;
+            display: none; /* Ẩn khi không cần thiết */
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #003366;
+            color: white;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 2; /* Hiển thị header trên lớp phủ */
+        }
+        .logo img {
+            height: 50px; /* Kích thước logo */
+        }
+        nav {
+            padding: 10px;
+            text-align: right;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            cursor: pointer; /* Thay đổi con trỏ khi hover */
+        }
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2; /* Hiển thị container trên lớp phủ */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #e64a19;
+        }
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #fff;
+            flex-direction: column;
+        }
+        .footer .logo {
+            margin-right: 20px;
+        }
+        .footer img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        .footer p {
+            margin: 5px 0;
+            text-align: center;
+        }
+        .footer .icon {
+            margin-right: 5px;
+        }
+        /* Modal đăng nhập */
+        .modal {
+            display: none; /* Ẩn mặc định */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        .modal h2 {
+            margin-bottom: 20px;
+        }
+        .modal button {
+            background: linear-gradient(to right, #ff5722, #ff8a65);
+        }
+        .modal .link {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay"></div> <!-- Lớp phủ màu mờ -->
+
+<header>
+    <div class="logo">
+        <img src="logo1.jpg" alt="Logo"> 
+    </div>
+    <nav>
+        <a href="#">Hướng dẫn đăng ký</a>
+        <a href="#">Tin tức</a>
+        <a href="#">Đăng ký xét tuyển</a>
+        <a href="#" id="loginBtn">Đăng nhập</a>
+        <a href="#" style="background: #ff5722; color: white; padding: 5px 10px; border-radius: 4px;">Đăng ký</a>
+    </nav>
+</header>
+
+<div class="container" id="registrationContainer">
+    <h2>Đăng Ký Tài Khoản Xét Tuyển</h2>
+    <form>
+        <label for="cmnd">CMND/CCCD *</label>
+        <input type="text" id="cmnd" required>
+
+        <label for="fullname">Họ và Tên *</label>
+        <input type="text" id="fullname" required>
+
+        <label for="email">Email *</label>
+        <input type="email" id="email" required>
+
+        <label for="phone">Số Điện Thoại *</label>
+        <input type="tel" id="phone" required>
+
+        <label for="password">Mật Khẩu *</label>
+        <input type="password" id="password" required>
+
+        <label for="confirm-password">Nhập Lại Mật Khẩu *</label>
+        <input type="password" id="confirm-password" required>
+
+        <button type="submit">ĐĂNG KÝ</button>
+    </form>
+    <p class="footer">Nếu bạn đã có tài khoản, vui lòng chọn <a href="#" id="openLoginModal">đăng nhập</a></p>
+</div>
+
+<!-- Modal đăng nhập -->
+<div class="modal" id="loginModal">
+    <h2>Đăng Nhập</h2>
+    <form>
+        <label for="login_cmnd">Số CMND/CCCD *</label>
+        <input type="text" id="login_cmnd" required>
+
+        <label for="login_password">Mật Khẩu *</label>
+        <input type="password" id="login_password" required>
+
+        <button type="submit">ĐĂNG NHẬP</button>
+    </form>
+    <p class="link">Nếu bạn chưa có tài khoản, hãy chọn <a href="#" id="backToRegister">đăng ký tài khoản xét tuyển</a></p>
+    <p class="link"><a href="#">QUÊN MẬT KHẨU?</a></p>
+</div>
+
+<footer class="footer">
+    <div class="footer-content" style="display: flex; align-items: center; justify-content: center;">
+        <div class="logo">
+            <img src="logo2.jpg" alt="Phenikaa University">
+        </div>
+        <div style="text-align: center;">
+            <p>
+                <i class="icon">📍</i>
+                Tầng 1, Tòa nhà A9 - Phòng Tuyển sinh và Truyền thông, Trường Đại học Phenikaa,<br>
+                Phường Yên Nghĩa, Quận Hà Đông, Hà Nội
+            </p>
+            <p>Hotline Tuyển sinh:</p>
+            <div>
+                <i class="icon">📞</i><strong>094 651 1010</strong> | 
+                <i class="icon">📞</i><strong>096 751 1010</strong> | 
+                <i class="icon">📞</i><strong>096 881 1010</strong>
+            </div>
+            <div>
+                <i class="icon">🌐</i><a href="http://phenikaa-uni.edu.vn">Phenikaa.edu.vn</a> | 
+                <i class="icon">📱</i><a href="http://facebook.com/daihochophenikaa">Facebook</a> | 
+                <i class="icon">✉️</i><a href="mailto:tuyensinh@phenikaa-uni.edu.vn">tuyensinh@phenikaa-uni.edu.vn</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mở modal khi nhấp vào nút đăng nhập
+    document.getElementById('openLoginModal').onclick = function(event) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định
+        document.getElementById('registrationContainer').style.display = 'none'; // Ẩn phần đăng ký
+        document.getElementById('loginModal').style.display = 'block'; // Hiển thị modal đăng nhập
+        document.querySelector('.overlay').style.display = 'block'; // Hiển thị overlay
+    };
+
+    // Quay lại phần đăng ký
+    document.getElementById('backToRegister').onclick = function(event) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định
+        document.getElementById('loginModal').style.display = 'none'; // Ẩn modal đăng nhập
+        document.getElementById('registrationContainer').style.display = 'block'; // Hiển thị lại phần đăng ký
+    };
+
+    // Đóng modal khi nhấp ra ngoài modal (overlay)
+    document.querySelector('.overlay').onclick = function() {
+        this.style.display = 'none';
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('registrationContainer').style.display = 'block'; // Hiển thị lại phần đăng ký
+    };
+</script>
+
+</body>
+</html>
