@@ -2,10 +2,16 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url("./pictures/back.jpg");
+    background-image: url("./pictures1/back.jpg");
     background-size: cover;
     color: #333;
 }
+
+.required {
+    color: red;
+    font-size: 18px;
+        }
+
 .overlay {
     position: fixed;
     top: 0;
@@ -23,7 +29,10 @@ header {
     background: #003366;
     color: white;
     padding: 10px 20px;
-    position: relative;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    right: 0;
     z-index: 2; /* Hiển thị header trên lớp phủ */
 }
 .logo img {
@@ -102,16 +111,16 @@ button:hover {
 }
 /* Modal đăng nhập */
 .modal {
-    display: none; /* Ẩn mặc định */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
+    display: none;
+    max-width: 400px;
+    margin: 120px auto;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    z-index: 2;
+    position: relative;
+    flex: 1;
+    z-index: 2; /* Hiển thị container trên lớp phủ */
 }
 .modal h2 {
     margin-bottom: 20px;

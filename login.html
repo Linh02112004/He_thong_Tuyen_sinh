@@ -12,7 +12,7 @@
 
 <header>
     <div class="logo">
-        <img src="./pictures/logo1.jpg" alt="Logo"> 
+        <img src="./styles/pictures1/logo1.jpg" alt="Logo"> 
     </div>
     <nav>
         <a href="#">Hướng dẫn đăng ký</a>
@@ -26,22 +26,22 @@
 <div class="container" id="registrationContainer">
     <h2>Đăng Ký Tài Khoản Xét Tuyển</h2>
     <form>
-        <label for="cmnd">CMND/CCCD *</label>
+        <label for="cmnd">CMND/CCCD <span class="required">*</span></label>
         <input type="text" id="cmnd" required>
 
-        <label for="fullname">Họ và Tên *</label>
+        <label for="fullname">Họ và Tên <span class="required">*</span></label>
         <input type="text" id="fullname" required>
 
-        <label for="email">Email *</label>
+        <label for="email">Email <span class="required">*</span></label>
         <input type="email" id="email" required>
 
-        <label for="phone">Số Điện Thoại *</label>
+        <label for="phone">Số Điện Thoại <span class="required">*</span></label>
         <input type="tel" id="phone" required>
 
-        <label for="password">Mật Khẩu *</label>
+        <label for="password">Mật Khẩu <span class="required">*</span></label>
         <input type="password" id="password" required>
 
-        <label for="confirm-password">Nhập Lại Mật Khẩu *</label>
+        <label for="confirm-password">Nhập Lại Mật Khẩu <span class="required">*</span></label>
         <input type="password" id="confirm-password" required>
 
         <button type="submit">ĐĂNG KÝ</button>
@@ -52,23 +52,35 @@
 <!-- Modal đăng nhập -->
 <div class="modal" id="loginModal">
     <h2>Đăng Nhập</h2>
-    <form>
-        <label for="login_cmnd">Số CMND/CCCD *</label>
-        <input type="text" id="login_cmnd" required>
+    
+    <!-- Lựa chọn giữa Admin và Thí sinh -->
+    <div>
+        <label>
+            <input type="radio" name="userType" value="student" checked onchange="toggleFields()"> Thí sinh
+        </label>
+        <label>
+            <input type="radio" name="userType" value="admin" onchange="toggleFields()"> Cán bộ Tuyển sinh
+        </label>
+    </div>
 
-        <label for="login_password">Mật Khẩu *</label>
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+        <label for="login_id" id="loginLabel">Số CMND/CCCD <span class="required">*</span></label>
+        <input type="text" id="login_id" required>
+
+        <label for="login_password">Mật Khẩu <span class="required">*</span></label>
         <input type="password" id="login_password" required>
 
         <button type="submit">ĐĂNG NHẬP</button>
     </form>
-    <p class="link">Nếu bạn chưa có tài khoản, hãy chọn <a href="#" id="backToRegister">đăng ký tài khoản xét tuyển</a></p>
+    
+    <p class="link">Nếu bạn chưa có tài khoản, hãy chọn <a href="#" id="backToRegister">đăng ký tài khoản</a></p>
     <p class="link"><a href="#">QUÊN MẬT KHẨU?</a></p>
 </div>
 
 <footer class="footer">
-    <div class="footer-content" style="display: flex; align-items: center; justify-content: center;">
+    <div class="footer-content">
         <div class="logo">
-            <img src="./pictures/logo2.jpg" alt="Phenikaa University">
+            <img src="./styles/pictures1/logo2.jpg" alt="Phenikaa University">
         </div>
         <div style="text-align: center;">
             <p>
@@ -113,6 +125,39 @@
         document.getElementById('loginModal').style.display = 'none';
         document.getElementById('registrationContainer').style.display = 'block'; // Hiển thị lại phần đăng ký
     };
+
+function toggleFields() {
+    const userType = document.querySelector('input[name="userType"]:checked').value;
+    const loginLabel = document.getElementById('loginLabel');
+    const loginInput = document.getElementById('login_id');
+
+    if (userType === 'admin') {
+        loginLabel.innerHTML = 'Tên đăng nhập <span class="required">*</span>';
+        loginInput.setAttribute('placeholder', '');
+    } else {
+        loginLabel.innerHTML = 'Số CMND/CCCD <span class="required">*</span>';
+        loginInput.setAttribute('placeholder', '');
+    }
+}
+
+function handleLogin(event) {
+    event.preventDefault(); // Ngăn chặn hành động gửi form mặc định
+
+    const userType = document.querySelector('input[name="userType"]:checked').value;
+    const loginId = document.getElementById('login_id').value;
+    const loginPassword = document.getElementById('login_password').value;
+
+    // Ở đây có thể thêm logic xác thực (kiểm tra tài khoản, mật khẩu)
+    
+    // Chuyển hướng dựa trên loại người dùng
+    if (userType === 'admin') {
+        // Chuyển đến trang admin
+        window.location.href = 'home.html'; // Khi nào xong thì sửa đường dẫn
+    } else {
+        // Chuyển đến trang thí sinh
+        window.location.href = 'index1.html';
+    }
+}
 </script>
 
 </body>
