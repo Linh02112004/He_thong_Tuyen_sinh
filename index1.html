@@ -89,16 +89,99 @@
         .form-group {
             margin-bottom: 15px;
         }
-	    .submit-container {
-    	   display: flex; /* Sử dụng flexbox */
- 	       justify-content: center; /* Căn giữa */
-  	       margin-top: 20px; /* Khoảng cách trên nút */
-	    }
+	    .save-button, .add-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .delete-button {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
 
         .required {
             color: red;
             font-size: 18px;
         }
+		.container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="number"] {
+            width: 80%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+        }
+		.container1 {
+            max-width: 600px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 0 auto;
+        }
+		.section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .input-group {
+            margin-top: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .select-group {
+            display: flex;
+            justify-content: space-between;
+        }
+		.message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -567,15 +650,332 @@
     		<label for="districtCode12">Mã quận/huyện <span class="required">*</span> :</label>
     		<input type="text" id="districtCode12" name="districtCode12" required>
 	   </div>
-	 </div>    
     </div>
-	    <div class="submit-container">
-            <button type="submit">Lưu thông tin </button>
-        </div>
-
+	<button class="save-button">LƯU THAY ĐỔI</button>
+	</div>
+	
     </form>
-</div>
+    </div>
+    <div class="form-container">
+		<div class="container">
+		   <h1>NHẬP THÔNG TIN HỌC BẠ</h1>
+		   <h2>Bảng điểm học bạ</h2>
+			<table>
+			   <thead>
+				   <tr>
+					   <th>Môn học</th>
+					   <th colspan="2">Lớp 11</th>
+					   <th colspan="2">Lớp 12</th>
+				   </tr>
+				   <tr>
+					   <th></th>
+					   <th>Kỳ 1</th>
+					   <th>Kỳ 2</th>
+					   <th>Kỳ 1</th>
+				   </tr>
+			   </thead>
+			   <tbody>
+				   <tr>
+					   <td>Toán</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+				   <tr>
+					   <td>Lý</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+				   <tr>
+					   <td>Hóa</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   
+				   </tr>
+				   <tr>
+					   <td>Sinh</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   
+				   </tr>
+				   <tr>
+					   <td>Văn</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+				   <tr>
+					   <td>Sử</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+				   <tr>
+					   <td>Địa</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+				   <tr>
+					   <td>Tiếng Anh</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+				   <tr>
+					   <td>Giáo Dục Công Dân</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+				   <tr>
+					   <td>Tiếng Nhật</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+				   <tr>
+					   <td>Tiếng Trung</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   
+				   </tr>
+				   <tr>
+					   <td>Tiếng Hàn</td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+					   <td><input type="number" step="0.1" min="0" max="10"></td>
+				   </tr>
+			   </tbody>
+		   </table>
+		   <button class="save-button">LƯU THAY ĐỔI</button>
+	   </div>
+	</div> 
+	<div class ="form-container">
+	<div class="container">
+        <h1>ĐĂNG KÝ NGUYỆN VỌNG</h1>
         
+        <div id="wish-container">
+            <div class="section" id="wish-1">
+                <div class="section-header">
+                    <span>Nguyện vọng 1</span>
+                    <span class="delete-button" onclick="deleteWish('wish-1')">🗑️</span>
+                </div>
+                <div class="input-group">
+                    <label for="major1">Ngành/Chương trình đăng ký xét tuyển</label>
+                    <div class="select-group">
+                        <select id="major1">
+                            <option value="Cong_nghe_sinh_hoc">Công nghệ sinh học</option>
+                            <option value="Ky_thuat_hoa_hoc">Công nghệ hóa học</option>
+			    <option value="Ky_thuat_dieu_khien_va_tu_dong_hoa">Kỹ thuật điều khiển và tự động hóa</option>
+			    <option value="Ky_thuat_y_sinh">Kỹ thuật y sinh</option>
+			    <option value="Ky_thuat_dien_tu_vien_thong">Kỹ thuật điện tử- viễn thông</option>
+			    <option value="Ky_thuat_robot_va_tri_tue_nhan_tao">Kỹ thuật robot và trí tuệ nhân tạo</option>
+			    <option value="Cong_nghe_thong_tin">Công nghệ thông tin</option>
+			    <option value="Ky_thuat_phan_men">Kỹ thuật phần mền</option>
+			    <option value="Cong_nghe_thong_tin_Viet_Nhat">Công nghệ thông tin Việt Nhật</option>
+			    <option value="Khoa_hoc_may_tinh">Khoa học máy tính</option>
+			    <option value="Tai_nang_khoa_hoc_may_tinh">Tài năng khoa học máy tính</option>
+			    <option value="An_toan_thong_tin">An toàn thông tin </option>
+			    <option value="Tri_tue_nhan_tao">Trí tuệ nhân tạo</option>
+			    <option value="Ky_thuat_co_dien_tu">Kỹ thuật cơ điện tử </option>
+	                    <option value="Vat_lieu_tien_tien_va_cong_nghe_nano">Vật liệu tiên tiến và công nghệ nano</option>
+			    <option value="Vat_lieu_thong_minh_va_tri_tue_nhan_tao">Vật liệu thông minh và trí tuệ nhân tạo</option>
+			    <option value="Chip_ban_dan_va_cong_nghe_dong_goi">Chip bán dẫn và Công nghệ đóng gói</option>
+			    <option value="Ky_thuat_o_to">Kỹ thuật ô tô</option>
+			    <option value="Co_dien_tu_o_to">Cơ điện tử ô tô</option>
+			    <option value="Ky_thuat_phan_men_o_to">Kỹ thuật phần mền ô tô</option>
+			    <option value="Quan_tri_kinh_doanh">Quản trị kinh doanh</option>
+			    <option value="Ke_toan">Kế toán </option>
+			    <option value="Tai_chinh_ngan_hang">Tài chính-Ngân hàng </option>
+			    <option value="Quan_tri_nhan_luc">Quản trị nhân lực</option>
+			    <option value="Marketing">Marketing</option>
+			    <option value="Ngon_ngu_anh">Ngôn ngữ Anh</option>
+			    <option value="Ngon_ngu_trung">Ngôn ngữ Trung Quốc</option>
+			    <option value="Ngon_ngu_han">Ngôn ngữ Hàn Quốc</option>
+			    <option value="Ngon_ngu_nhat">Ngôn ngữ Nhật</option>
+			    <option value="Ngon_ngu_phap">Ngôn ngữ Pháp</option>
+			    <option value="Dong_phuong_hoc">Đông phương học</option>
+			    <option value="Du_lich">Du lịch</option>
+			    <option value="Kinh_doanh_du_lich_so">Kinh doanh du lịch số</option>
+			    <option value="Quan_tri_khach_san">Quản trị khách sạn</option>
+			    <option value="Dieu_duong">Điều dưỡng</option>
+			    <option value="Duoc_hoc">Dược học</option>
+			    <option value="Ky_thuat_xet_nghiem_y_hoc">Kỹ thuật xét nghiệm y học</option>
+			    <option value="Y_khoa">Y khoa</option>
+			    <option value="Rang_ham_mat">Răng-Hàm-Mặt</option>
+                        </select>
+                        <select id="block1">
+                            <option value="A00">A00(Toán,Lý, Hóa)</option>
+                            <option value="A01">A01(Toán,Lý,Anh)</option>
+                            <option value="A02">A02(Toán, Vật lí , Sinh học)</option>
+			    <option value="A10">A10(Toán, Vật lý, Giáo dục công dân)</option>
+                            <option value="B00">B00(Toán, Hóa học, Sinh học)</option>
+			    <option value="B08">B08(Toán, Sinh học, Tiếng Anh)</option>
+			    <option value="C00">C00(Văn, Lịch sử, Địa lí)</option>
+                            <option value="C01">C01(Văn, Toán, Vật lí)</option>
+			    <option value="C04">C04(Văn, Toán, Địa lí)</option>
+			    <option value="D01">D01(Văn, Toán, tiếng Anh)</option>
+			    <option value="D07">D07(Toán, Hóa học, Tiếng Anh)</option>
+			    <option value="D08">D08(Toán, Sinh học, Tiếng Anh)</option>
+			    <option value="D09">D09(Toán, Lịch sử, Tiếng Anh)</option>
+			    <option value="D10">D10(Toán, Địa lí, Tiếng Anh)</option>
+			    <option value="D15">D15(Văn, Địa lí, Tiếng Anh)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="wish-2">
+                <div class="section-header">
+                    <span>Nguyện vọng 2</span>
+                    <span class="delete-button" onclick="deleteWish('wish-2')">🗑️</span>
+                </div>
+                <div class="input-group">
+                    <label for="major2">Ngành/Chương trình đăng ký xét tuyển</label>
+                    <div class="select-group">
+                        <select id="major2">
+                             <option value="Cong_nghe_sinh_hoc">Công nghệ sinh học</option>
+                            <option value="Ky_thuat_hoa_hoc">Công nghệ hóa học</option>
+			    <option value="Ky_thuat_dieu_khien_va_tu_dong_hoa">Kỹ thuật điều khiển và tự động hóa</option>
+			    <option value="Ky_thuat_y_sinh">Kỹ thuật y sinh</option>
+			    <option value="Ky_thuat_dien_tu_vien_thong">Kỹ thuật điện tử- viễn thông</option>
+			    <option value="Ky_thuat_robot_va_tri_tue_nhan_tao">Kỹ thuật robot và trí tuệ nhân tạo</option>
+			    <option value="Cong_nghe_thong_tin">Công nghệ thông tin</option>
+			    <option value="Ky_thuat_phan_men">Kỹ thuật phần mền</option>
+			    <option value="Cong_nghe_thong_tin_Viet_Nhat">Công nghệ thông tin Việt Nhật</option>
+			    <option value="Khoa_hoc_may_tinh">Khoa học máy tính</option>
+			    <option value="Tai_nang_khoa_hoc_may_tinh">Tài năng khoa học máy tính</option>
+			    <option value="An_toan_thong_tin">An toàn thông tin </option>
+			    <option value="Tri_tue_nhan_tao">Trí tuệ nhân tạo</option>
+			    <option value="Ky_thuat_co_dien_tu">Kỹ thuật cơ điện tử </option>
+	                    <option value="Vat_lieu_tien_tien_va_cong_nghe_nano">Vật liệu tiên tiến và công nghệ nano</option>
+			    <option value="Vat_lieu_thong_minh_va_tri_tue_nhan_tao">Vật liệu thông minh và trí tuệ nhân tạo</option>
+			    <option value="Chip_ban_dan_va_cong_nghe_dong_goi">Chip bán dẫn và Công nghệ đóng gói</option>
+			    <option value="Ky_thuat_o_to">Kỹ thuật ô tô</option>
+			    <option value="Co_dien_tu_o_to">Cơ điện tử ô tô</option>
+			    <option value="Ky_thuat_phan_men_o_to">Kỹ thuật phần mền ô tô</option>
+			    <option value="Quan_tri_kinh_doanh">Quản trị kinh doanh</option>
+			    <option value="Ke_toan">Kế toán </option>
+			    <option value="Tai_chinh_ngan_hang">Tài chính-Ngân hàng </option>
+			    <option value="Quan_tri_nhan_luc">Quản trị nhân lực</option>
+			    <option value="Marketing">Marketing</option>
+			    <option value="Ngon_ngu_anh">Ngôn ngữ Anh</option>
+			    <option value="Ngon_ngu_trung">Ngôn ngữ Trung Quốc</option>
+			    <option value="Ngon_ngu_han">Ngôn ngữ Hàn Quốc</option>
+			    <option value="Ngon_ngu_nhat">Ngôn ngữ Nhật</option>
+			    <option value="Ngon_ngu_phap">Ngôn ngữ Pháp</option>
+			    <option value="Dong_phuong_hoc">Đông phương học</option>
+			    <option value="Du_lich">Du lịch</option>
+			    <option value="Kinh_doanh_du_lich_so">Kinh doanh du lịch số</option>
+			    <option value="Quan_tri_khach_san">Quản trị khách sạn</option>
+			    <option value="Dieu_duong">Điều dưỡng</option>
+			    <option value="Duoc_hoc">Dược học</option>
+			    <option value="Ky_thuat_xet_nghiem_y_hoc">Kỹ thuật xét nghiệm y học</option>
+			    <option value="Y_khoa">Y khoa</option>
+			    <option value="Rang_ham_mat">Răng-Hàm-Mặt</option>
+                        </select>
+                        <select id="block2">
+                            <option value="A00">A00(Toán,Lý, Hóa)</option>
+                            <option value="A01">A01(Toán,Lý,Anh)</option>
+                            <option value="A02">A02(Toán, Vật lí , Sinh học)</option>
+			    <option value="A10">A10(Toán, Vật lý, Giáo dục công dân)</option>
+                            <option value="B00">B00(Toán, Hóa học, Sinh học)</option>
+			    <option value="B08">B08(Toán, Sinh học, Tiếng Anh)</option>
+			    <option value="C00">C00(Văn, Lịch sử, Địa lí)</option>
+                            <option value="C01">C01(Văn, Toán, Vật lí)</option>
+			    <option value="C04">C04(Văn, Toán, Địa lí)</option>
+			    <option value="D01">D01(Văn, Toán, tiếng Anh)</option>
+			    <option value="D07">D07(Toán, Hóa học, Tiếng Anh)</option>
+			    <option value="D08">D08(Toán, Sinh học, Tiếng Anh)</option>
+			    <option value="D09">D09(Toán, Lịch sử, Tiếng Anh)</option>
+			    <option value="D10">D10(Toán, Địa lí, Tiếng Anh)</option>
+			    <option value="D15">D15(Văn, Địa lí, Tiếng Anh)</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="wish-3">
+                <div class="section-header">
+                    <span>Nguyện vọng 3</span>
+                    <span class="delete-button" onclick="deleteWish('wish-3')">🗑️</span>
+                </div>
+                <div class="input-group">
+                    <label for="major3">Ngành/Chương trình đăng ký xét tuyển</label>
+                    <div class="select-group">
+                        <select id="major3">
+                            <option value="Cong_nghe_sinh_hoc">Công nghệ sinh học</option>
+                            <option value="Ky_thuat_hoa_hoc">Công nghệ hóa học</option>
+			    <option value="Ky_thuat_dieu_khien_va_tu_dong_hoa">Kỹ thuật điều khiển và tự động hóa</option>
+			    <option value="Ky_thuat_y_sinh">Kỹ thuật y sinh</option>
+			    <option value="Ky_thuat_dien_tu_vien_thong">Kỹ thuật điện tử- viễn thông</option>
+			    <option value="Ky_thuat_robot_va_tri_tue_nhan_tao">Kỹ thuật robot và trí tuệ nhân tạo</option>
+			    <option value="Cong_nghe_thong_tin">Công nghệ thông tin</option>
+			    <option value="Ky_thuat_phan_men">Kỹ thuật phần mền</option>
+			    <option value="Cong_nghe_thong_tin_Viet_Nhat">Công nghệ thông tin Việt Nhật</option>
+			    <option value="Khoa_hoc_may_tinh">Khoa học máy tính</option>
+			    <option value="Tai_nang_khoa_hoc_may_tinh">Tài năng khoa học máy tính</option>
+			    <option value="An_toan_thong_tin">An toàn thông tin </option>
+			    <option value="Tri_tue_nhan_tao">Trí tuệ nhân tạo</option>
+			    <option value="Ky_thuat_co_dien_tu">Kỹ thuật cơ điện tử </option>
+	                    <option value="Vat_lieu_tien_tien_va_cong_nghe_nano">Vật liệu tiên tiến và công nghệ nano</option>
+			    <option value="Vat_lieu_thong_minh_va_tri_tue_nhan_tao">Vật liệu thông minh và trí tuệ nhân tạo</option>
+			    <option value="Chip_ban_dan_va_cong_nghe_dong_goi">Chip bán dẫn và Công nghệ đóng gói</option>
+			    <option value="Ky_thuat_o_to">Kỹ thuật ô tô</option>
+			    <option value="Co_dien_tu_o_to">Cơ điện tử ô tô</option>
+			    <option value="Ky_thuat_phan_men_o_to">Kỹ thuật phần mền ô tô</option>
+			    <option value="Quan_tri_kinh_doanh">Quản trị kinh doanh</option>
+			    <option value="Ke_toan">Kế toán </option>
+			    <option value="Tai_chinh_ngan_hang">Tài chính-Ngân hàng </option>
+			    <option value="Quan_tri_nhan_luc">Quản trị nhân lực</option>
+			    <option value="Marketing">Marketing</option>
+			    <option value="Ngon_ngu_anh">Ngôn ngữ Anh</option>
+			    <option value="Ngon_ngu_trung">Ngôn ngữ Trung Quốc</option>
+			    <option value="Ngon_ngu_han">Ngôn ngữ Hàn Quốc</option>
+			    <option value="Ngon_ngu_nhat">Ngôn ngữ Nhật</option>
+			    <option value="Ngon_ngu_phap">Ngôn ngữ Pháp</option>
+			    <option value="Dong_phuong_hoc">Đông phương học</option>
+			    <option value="Du_lich">Du lịch</option>
+			    <option value="Kinh_doanh_du_lich_so">Kinh doanh du lịch số</option>
+			    <option value="Quan_tri_khach_san">Quản trị khách sạn</option>
+			    <option value="Dieu_duong">Điều dưỡng</option>
+			    <option value="Duoc_hoc">Dược học</option>
+			    <option value="Ky_thuat_xet_nghiem_y_hoc">Kỹ thuật xét nghiệm y học</option>
+			    <option value="Y_khoa">Y khoa</option>
+			    <option value="Rang_ham_mat">Răng-Hàm-Mặt</option>
+                        </select>
+                        <select id="block3">
+                            <option value="A00">A00(Toán,Lý, Hóa)</option>
+                            <option value="A01">A01(Toán,Lý,Anh)</option>
+                            <option value="A02">A02(Toán, Vật lí , Sinh học)</option>
+			    <option value="A10">A10(Toán, Vật lý, Giáo dục công dân)</option>
+                            <option value="B00">B00(Toán, Hóa học, Sinh học)</option>
+			    <option value="B08">B08(Toán, Sinh học, Tiếng Anh)</option>
+			    <option value="C00">C00(Văn, Lịch sử, Địa lí)</option>
+                            <option value="C01">C01(Văn, Toán, Vật lí)</option>
+			    <option value="C04">C04(Văn, Toán, Địa lí)</option>
+			    <option value="D01">D01(Văn, Toán, tiếng Anh)</option>
+			    <option value="D07">D07(Toán, Hóa học, Tiếng Anh)</option>
+			    <option value="D08">D08(Toán, Sinh học, Tiếng Anh)</option>
+			    <option value="D09">D09(Toán, Lịch sử, Tiếng Anh)</option>
+			    <option value="D10">D10(Toán, Địa lí, Tiếng Anh)</option>
+			    <option value="D15">D15(Văn, Địa lí, Tiếng Anh)</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<button class="add-button" onclick="addWish()">THÊM NGUYỆN VỌNG</button>
+        <button class="save-button">LƯU THAY ĐỔI</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    </div>
     <script>
         const districts = {
             'An Giang': ['An Phú', 'Châu Đốc', 'Châu Phú', 'Châu Thành', 'Chợ Mới', 'Long Xuyên', 'Phú Tân', 'Tân Châu', 'Thoại Sơn', 'Tịnh Biên', 'Tri Tôn'],
@@ -788,6 +1188,115 @@
                 this.setCustomValidity('');
             }
         });
+	// Thêm và xóa nguyện vọng 
+	let wishCount = 3; // Đếm số nguyện vọng hiện tại
+
+function deleteWish(wishId) {
+	const wishElement = document.getElementById(wishId);
+	if (wishElement) {
+		wishElement.remove();
+		updateWishes();
+	}
+}
+
+function updateWishes() {
+	const sections = document.querySelectorAll('.section');
+	sections.forEach((section, index) => {
+		const header = section.querySelector('.section-header span:first-child');
+		header.textContent = `Nguyện vọng ${index + 1}`;
+		section.id = `wish-${index + 1}`;
+		const selectMajor = section.querySelector('select[id^="major"]');
+		selectMajor.id = `major${index + 1}`;
+		const selectBlock = section.querySelector('select[id^="block"]');
+		selectBlock.id = `block${index + 1}`;
+	});
+	wishCount = sections.length; // Cập nhật số lượng nguyện vọng
+	document.getElementById('message').textContent = ""; // Xóa thông báo
+}
+
+function addWish() {
+	if (wishCount >= 3) {
+		document.getElementById('message').textContent = "Chỉ được tối đa 3 nguyện vọng!";
+		return;
+	}
+	wishCount++;
+	const newWish = document.createElement('div');
+	newWish.classList.add('section');
+	newWish.id = `wish-${wishCount}`;
+	newWish.innerHTML = `
+		<div class="section-header">
+			<span>Nguyện vọng ${wishCount}</span>
+			<span class="delete-button" onclick="deleteWish('wish-${wishCount}')">🗑️</span>
+		</div>
+		<div class="input-group">
+			<label for="major${wishCount}">Ngành/Chương trình đăng ký xét tuyển</label>
+			<div class="select-group">
+				<select id="major${wishCount}">
+					<option value="Cong_nghe_sinh_hoc">Công nghệ sinh học</option>
+					<option value="Ky_thuat_hoa_hoc">Công nghệ hóa học</option>
+		<option value="Ky_thuat_dieu_khien_va_tu_dong_hoa">Kỹ thuật điều khiển và tự động hóa</option>
+		<option value="Ky_thuat_y_sinh">Kỹ thuật y sinh</option>
+		<option value="Ky_thuat_dien_tu_vien_thong">Kỹ thuật điện tử- viễn thông</option>
+		<option value="Ky_thuat_robot_va_tri_tue_nhan_tao">Kỹ thuật robot và trí tuệ nhân tạo</option>
+		<option value="Cong_nghe_thong_tin">Công nghệ thông tin</option>
+		<option value="Ky_thuat_phan_men">Kỹ thuật phần mền</option>
+		<option value="Cong_nghe_thong_tin_Viet_Nhat">Công nghệ thông tin Việt Nhật</option>
+		<option value="Khoa_hoc_may_tinh">Khoa học máy tính</option>
+		<option value="Tai_nang_khoa_hoc_may_tinh">Tài năng khoa học máy tính</option>
+		<option value="An_toan_thong_tin">An toàn thông tin </option>
+		<option value="Tri_tue_nhan_tao">Trí tuệ nhân tạo</option>
+		<option value="Ky_thuat_co_dien_tu">Kỹ thuật cơ điện tử </option>
+				<option value="Vat_lieu_tien_tien_va_cong_nghe_nano">Vật liệu tiên tiến và công nghệ nano</option>
+		<option value="Vat_lieu_thong_minh_va_tri_tue_nhan_tao">Vật liệu thông minh và trí tuệ nhân tạo</option>
+		<option value="Chip_ban_dan_va_cong_nghe_dong_goi">Chip bán dẫn và Công nghệ đóng gói</option>
+		<option value="Ky_thuat_o_to">Kỹ thuật ô tô</option>
+		<option value="Co_dien_tu_o_to">Cơ điện tử ô tô</option>
+		<option value="Ky_thuat_phan_men_o_to">Kỹ thuật phần mền ô tô</option>
+		<option value="Quan_tri_kinh_doanh">Quản trị kinh doanh</option>
+		<option value="Ke_toan">Kế toán </option>
+		<option value="Tai_chinh_ngan_hang">Tài chính-Ngân hàng </option>
+		<option value="Quan_tri_nhan_luc">Quản trị nhân lực</option>
+		<option value="Marketing">Marketing</option>
+		<option value="Ngon_ngu_anh">Ngôn ngữ Anh</option>
+		<option value="Ngon_ngu_trung">Ngôn ngữ Trung Quốc</option>
+		<option value="Ngon_ngu_han">Ngôn ngữ Hàn Quốc</option>
+		<option value="Ngon_ngu_nhat">Ngôn ngữ Nhật</option>
+		<option value="Ngon_ngu_phap">Ngôn ngữ Pháp</option>
+		<option value="Dong_phuong_hoc">Đông phương học</option>
+		<option value="Du_lich">Du lịch</option>
+		<option value="Kinh_doanh_du_lich_so">Kinh doanh du lịch số</option>
+		<option value="Quan_tri_khach_san">Quản trị khách sạn</option>
+		<option value="Dieu_duong">Điều dưỡng</option>
+		<option value="Duoc_hoc">Dược học</option>
+		<option value="Ky_thuat_xet_nghiem_y_hoc">Kỹ thuật xét nghiệm y học</option>
+		<option value="Y_khoa">Y khoa</option>
+		<option value="Rang_ham_mat">Răng-Hàm-Mặt</option>
+
+				</select>
+				<select id="block${wishCount}">
+					<option value="A00">A00(Toán,Lý, Hóa)</option>
+					<option value="A01">A01(Toán,Lý,Anh)</option>
+					<option value="A02">A02(Toán, Vật lí , Sinh học)</option>
+		<option value="A10">A10(Toán, Vật lý, Giáo dục công dân)</option>
+					<option value="B00">B00(Toán, Hóa học, Sinh học)</option>
+		<option value="B08">B08(Toán, Sinh học, Tiếng Anh)</option>
+		<option value="C00">C00(Văn, Lịch sử, Địa lí)</option>
+					<option value="C01">C01(Văn, Toán, Vật lí)</option>
+		<option value="C04">C04(Văn, Toán, Địa lí)</option>
+		<option value="D01">D01(Văn, Toán, tiếng Anh)</option>
+		<option value="D07">D07(Toán, Hóa học, Tiếng Anh)</option>
+		<option value="D08">D08(Toán, Sinh học, Tiếng Anh)</option>
+		<option value="D09">D09(Toán, Lịch sử, Tiếng Anh)</option>
+		<option value="D10">D10(Toán, Địa lí, Tiếng Anh)</option>
+		<option value="D15">D15(Văn, Địa lí, Tiếng Anh)</option>
+
+				</select>
+			</div>
+		</div>
+	`;
+	document.getElementById('wish-container').appendChild(newWish);
+	document.getElementById('message').textContent = ""; // Xóa thông báo
+}
 
     </script>
 </body>
