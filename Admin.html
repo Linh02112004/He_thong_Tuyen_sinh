@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="styles/Admin.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="styles/pictures1/logo2.jpg" alt="Logo">
+        </div>
+        <h1>Hệ thống quản lý tuyển sinh</h1>
+        <div class="year-select">
+            <select>
+                <option value="2024-2025">2024-2025</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section class="admin-section">
+            <div class="form-button">
+
+            </div>
+
+            <div class="setting-button">
+
+            </div>
+        </section>
+
+        <section class="filter-section">
+            <h2>Quản lý hồ sơ</h2>
+            <div class="filter-form"></div>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dot-xet-tuyen">Đợt xét tuyển:</label>
+                            <select id="dot-xet-tuyen">
+                                <option value="">Chọn...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phuong-thuc">Phương thức:</label>
+                            <select id="phuong-thuc">
+                                <option value="">Chọn...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ho-ten">Họ và tên:</label>
+                            <input type="text" id="ho-ten">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cmnd">CMND/CCCD:</label>
+                            <input type="text" id="cmnd">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sdt">Số điện thoại:</label>
+                            <input type="text" id="sdt">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nguyen-vong">Nguyện vọng:</label>
+                            <input type="text" id="nguyen-vong">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nop-giay">Trạng thái nộp giấy đăng ký:</label>
+                            <select id="nop-giay">
+                                <option value="">Chọn...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nop-phi">Nộp phí đăng ký:</label>
+                            <select id="nop-phi">
+                                <option value="">Chọn...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="reset-btn">Đặt lại</button>
+                        <button type="submit" class="apply-btn">Áp dụng</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Đợt xét tuyển</th>
+                        <th>Phương thức</th>
+                        <th>Họ và tên</th>
+                        <th>CMND/CCCD</th>
+                        <th>Ngày sinh</th>
+                        <th>Nguyện vọng</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table data goes here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
