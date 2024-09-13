@@ -46,7 +46,7 @@ function handleLogin(event) {
     // Chuyển hướng dựa trên loại người dùng
     if (userType === 'admin') {
         // Chuyển đến trang admin
-        window.location.href = 'home.html'; // Khi nào xong thì sửa đường dẫn
+        window.location.href = 'Admin.html'; // Khi nào xong thì sửa đường dẫn
     } else {
         // Chuyển đến trang thí sinh
         window.location.href = 'index1.html';
