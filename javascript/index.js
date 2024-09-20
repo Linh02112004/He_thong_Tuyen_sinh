@@ -88,7 +88,7 @@ document.querySelector('#loginForm').onsubmit = function(event) {
     // Kiểm tra tài khoản Cán bộ Tuyển sinh
     if (loginId === 'admin1' && loginPassword === 'admin1') {
         // Nếu thông tin đúng, chuyển hướng đến trang admin.html
-        window.location.href = 'Admin.html';
+        window.location.href = 'admin.html';
     } else {
         showNotification('Tài khoản không tồn tại.'); // Thông báo nếu tài khoản không tồn tại
     }
