@@ -13,3 +13,6 @@ Hệ thống tuyển sinh trực tuyến là một giải pháp kỹ thuật s�
 # Công nghệ sử dụng
 - Giao diện người dùng: các công nghệ web như HTML, CSS, JavaScript.
 - Cơ sở dữ liệu: MySQL
+
+# Biểu đồ
+- User case: ./biểu đồ/Biểu đồ user case.drawio.png
