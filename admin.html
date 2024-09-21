@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
     <link rel="stylesheet" href="styles/Admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -17,24 +18,16 @@
                 <option value="2024-2025">2024-2025</option>
             </select>
         </div>
+        <div class="signout-button">
+            <button><i class="fa-solid fa-right-from-bracket fa-lg"></i></button>
+        </div>
     </header>
 
     <main>
-        <section class="admin-section">
-            <div class="form-button">
-
-            </div>
-
-            <div class="setting-button">
-
-            </div>
-        </section>
-
         <section class="filter-section">
             <h2>Quản lý hồ sơ</h2>
-            <div class="filter-form"></div>
+            <div class="filter-form">
                 <form>
-
                     <div class="form-row">
                         <div class="form-group">
                             <label for="ho-ten">Họ và tên:</label>
@@ -52,6 +45,52 @@
                             <label for="sdt">Số điện thoại:</label>
                             <input type="text" id="sdt">
                         </div>
+
+                        <div class="form-group">
+                            <label for="nganh">Ngành học đăng kí:</label>
+                            <select id="nganh">
+                                <option value="Chon_nganh">Chọn ngành</option>
+                                <option value="Cong_nghe_sinh_hoc">Công nghệ sinh học</option>
+                                <option value="Ky_thuat_hoa_hoc">Công nghệ hóa học</option>
+                                <option value="Ky_thuat_dieu_khien_va_tu_dong_hoa">Kỹ thuật điều khiển và tự động hóa</option>
+                                <option value="Ky_thuat_y_sinh">Kỹ thuật y sinh</option>
+                                <option value="Ky_thuat_dien_tu_vien_thong">Kỹ thuật điện tử- viễn thông</option>
+                                <option value="Ky_thuat_robot_va_tri_tue_nhan_tao">Kỹ thuật robot và trí tuệ nhân tạo</option>
+                                <option value="Cong_nghe_thong_tin">Công nghệ thông tin</option>
+                                <option value="Ky_thuat_phan_men">Kỹ thuật phần mền</option>
+                                <option value="Cong_nghe_thong_tin_Viet_Nhat">Công nghệ thông tin Việt Nhật</option>
+                                <option value="Khoa_hoc_may_tinh">Khoa học máy tính</option>
+                                <option value="Tai_nang_khoa_hoc_may_tinh">Tài năng khoa học máy tính</option>
+                                <option value="An_toan_thong_tin">An toàn thông tin </option>
+                                <option value="Tri_tue_nhan_tao">Trí tuệ nhân tạo</option>
+                                <option value="Ky_thuat_co_dien_tu">Kỹ thuật cơ điện tử </option>
+                                <option value="Vat_lieu_tien_tien_va_cong_nghe_nano">Vật liệu tiên tiến và công nghệ nano</option>
+                                <option value="Vat_lieu_thong_minh_va_tri_tue_nhan_tao">Vật liệu thông minh và trí tuệ nhân tạo</option>
+                                <option value="Chip_ban_dan_va_cong_nghe_dong_goi">Chip bán dẫn và Công nghệ đóng gói</option>
+                                <option value="Ky_thuat_o_to">Kỹ thuật ô tô</option>
+                                <option value="Co_dien_tu_o_to">Cơ điện tử ô tô</option>
+                                <option value="Ky_thuat_phan_men_o_to">Kỹ thuật phần mền ô tô</option>
+                                <option value="Quan_tri_kinh_doanh">Quản trị kinh doanh</option>
+                                <option value="Ke_toan">Kế toán </option>
+                                <option value="Tai_chinh_ngan_hang">Tài chính-Ngân hàng </option>
+                                <option value="Quan_tri_nhan_luc">Quản trị nhân lực</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Ngon_ngu_anh">Ngôn ngữ Anh</option>
+                                <option value="Ngon_ngu_trung">Ngôn ngữ Trung Quốc</option>
+                                <option value="Ngon_ngu_han">Ngôn ngữ Hàn Quốc</option>
+                                <option value="Ngon_ngu_nhat">Ngôn ngữ Nhật</option>
+                                <option value="Ngon_ngu_phap">Ngôn ngữ Pháp</option>
+                                <option value="Dong_phuong_hoc">Đông phương học</option>
+                                <option value="Du_lich">Du lịch</option>
+                                <option value="Kinh_doanh_du_lich_so">Kinh doanh du lịch số</option>
+                                <option value="Quan_tri_khach_san">Quản trị khách sạn</option>
+                                <option value="Dieu_duong">Điều dưỡng</option>
+                                <option value="Duoc_hoc">Dược học</option>
+                                <option value="Ky_thuat_xet_nghiem_y_hoc">Kỹ thuật xét nghiệm y học</option>
+                                <option value="Y_khoa">Y khoa</option>
+                                <option value="Rang_ham_mat">Răng-Hàm-Mặt</option>                            
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-actions">
@@ -66,9 +105,13 @@
             <table>
                 <thead>
                     <tr>
+                        <th>STT</th>
                         <th>Họ và tên</th>
                         <th>CMND/CCCD</th>
                         <th>Ngày sinh</th>
+                        <th>Ngành học đăng kí</th>
+                        <th>Thứ tự nguyện vọng</th>
+                        <th><i class="fa-solid fa-eye"></i></th>
                     </tr>
                 </thead>
                 <tbody>
