@@ -15,4 +15,4 @@ Hệ thống tuyển sinh trực tuyến là một giải pháp kỹ thuật s�
 - Cơ sở dữ liệu: MySQL
 
 # Biểu đồ
-- User case: ./biểu đồ/Biểu đồ user case.drawio.png
+- User case: https://drive.google.com/file/d/1dZnJRut7AVKsre2UNfMlaBuaFwP1hZCy/view?usp=sharing
