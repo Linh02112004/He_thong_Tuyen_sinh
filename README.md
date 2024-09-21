@@ -16,3 +16,4 @@ Hệ thống tuyển sinh trực tuyến là một giải pháp kỹ thuật s�
 
 # Biểu đồ
 - User case: https://drive.google.com/file/d/1dZnJRut7AVKsre2UNfMlaBuaFwP1hZCy/view?usp=sharing
+- Stories: https://drive.google.com/file/d/1nfrlrX4LtnFMAwdKfzgaI1CV9kN_XFj0/view?usp=sharing
