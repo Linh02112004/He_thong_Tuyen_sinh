@@ -47,6 +47,7 @@ h1 {
 
 .signout-button button {
     background-color: white;
+    cursor: pointer;
     border-radius: 5px;
     padding: 5px;
     margin-left: 10px; /* Khoảng cách giữa select và button */
