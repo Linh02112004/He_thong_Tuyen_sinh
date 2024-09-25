@@ -2,34 +2,36 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: white;
 }
 
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
+    justify-content: space-between;
+    align-items: center;
+    background-color: #002855;
     color: white;
-    text-decoration: none;
-    font-weight: bold;
+    padding: 20px;
 }
 
-nav ul li a:hover {
+.logo img {
+    height: 50px; /* Kích thước logo */
+}
+
+nav {
+    padding: 5px;
+    text-align: center;
+}
+
+nav a {
+    font-weight: bolder;
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+}
+
+nav a :hover {
     text-decoration: underline;
 }
 
@@ -38,9 +40,9 @@ main {
 }
 
 .hero {
-    background: url('hero-image.jpg') no-repeat center center;
-    background-size: cover;
-    padding: 100px 20px;
+    background: url('pictures1/back.jpg') no-repeat center center;
+    background-size:auto;
+    padding: 100px 100px;
     text-align: center;
     color: white;
 }
@@ -60,7 +62,7 @@ main {
 }
 
 .service, .artist {
-    background-color: #e0e0e0;
+    background-color: #e7e5e5;
     padding: 15px;
     margin: 10px;
     border-radius: 5px;
@@ -69,8 +71,43 @@ main {
 }
 
 footer {
-    background-color: #333;
+    display: flex; /* Dùng flex để bố trí các phần tử */
+    justify-content: center; /* Đảm bảo nội dung content nằm giữa */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    background-color: #002855;
     color: white;
-    text-align: center;
-    padding: 10px 0;
+    padding: 10px 30px;
+    position: relative; /* Để điều chỉnh vị trí của logo */
+}
+
+.footer-content {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc cho cả logo và nội dung */
+    width: 100%;
+    justify-content: center; /* Đảm bảo nội dung content nằm giữa */
+    position: relative;
+}
+
+.footer-content .logo {
+    position: absolute; /* Để đặt logo ở góc trái */
+    left: 30px; /* Căn chỉnh khoảng cách logo từ bên trái */
+    display: flex;
+    align-items: center;
+}
+
+.footer-content .logo img {
+    height: 60px; /* Đặt chiều cao cho logo */
+}
+
+.footer-content .content {
+    text-align: center; /* Căn giữa nội dung */
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
