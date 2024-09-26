@@ -1,3 +1,4 @@
+
 let wishCount = 3; // Đếm số nguyện vọng hiện tại
 
 function deleteWish(wishId) {
@@ -41,64 +42,64 @@ newWish.innerHTML = `
 		<label for="major${wishCount}">Ngành/Chương trình đăng ký xét tuyển</label>
 		<div class="select-group">
 			<select id="major${wishCount}">
-				<option value="Chon_nganh">Chọn ngành</option>
-				<option value="Cong_nghe_sinh_hoc">Công nghệ sinh học</option>
-				<option value="Ky_thuat_hoa_hoc">Công nghệ hóa học</option>
-				<option value="Ky_thuat_dieu_khien_va_tu_dong_hoa">Kỹ thuật điều khiển và tự động hóa</option>
-				<option value="Ky_thuat_y_sinh">Kỹ thuật y sinh</option>
-				<option value="Ky_thuat_dien_tu_vien_thong">Kỹ thuật điện tử- viễn thông</option>
-				<option value="Ky_thuat_robot_va_tri_tue_nhan_tao">Kỹ thuật robot và trí tuệ nhân tạo</option>
-				<option value="Cong_nghe_thong_tin">Công nghệ thông tin</option>
-				<option value="Ky_thuat_phan_men">Kỹ thuật phần mềm</option>
-				<option value="Cong_nghe_thong_tin_Viet_Nhat">Công nghệ thông tin Việt Nhật</option>
-				<option value="Khoa_hoc_may_tinh">Khoa học máy tính</option>
-				<option value="Tai_nang_khoa_hoc_may_tinh">Tài năng khoa học máy tính</option>
-				<option value="An_toan_thong_tin">An toàn thông tin</option>
-				<option value="Tri_tue_nhan_tao">Trí tuệ nhân tạo</option>
-				<option value="Ky_thuat_co_dien_tu">Kỹ thuật cơ điện tử</option>
-				<option value="Vat_lieu_tien_tien_va_cong_nghe_nano">Vật liệu tiên tiến và công nghệ nano</option>
-				<option value="Vat_lieu_thong_minh_va_tri_tue_nhan_tao">Vật liệu thông minh và trí tuệ nhân tạo</option>
-				<option value="Chip_ban_dan_va_cong_nghe_dong_goi">Chip bán dẫn và Công nghệ đóng gói</option>
-				<option value="Ky_thuat_o_to">Kỹ thuật ô tô</option>
-				<option value="Co_dien_tu_o_to">Cơ điện tử ô tô</option>
-				<option value="Ky_thuat_phan_men_o_to">Kỹ thuật phần mềm ô tô</option>
-				<option value="Quan_tri_kinh_doanh">Quản trị kinh doanh</option>
-				<option value="Ke_toan">Kế toán</option>
-				<option value="Tai_chinh_ngan_hang">Tài chính-Ngân hàng</option>
-				<option value="Quan_tri_nhan_luc">Quản trị nhân lực</option>
+				<option value="Công Nghệ Sinh Học">Công Nghệ Sinh Học</option>
+				<option value="Kỹ Thuật Hóa Học">Kỹ Thuật Hóa Học</option>
+				<option value="Kỹ Thuật Điều Khiển và Tự Động Hóa">Kỹ Thuật Điều Khiển và Tự Động Hóa</option>
+				<option value="Kỹ Thuật Y Sinh (Hệ Tư Sinh)">Kỹ Thuật Y Sinh (Hệ Tư Sinh)</option>
+				<option value="Kỹ Thuật Điện Tử - Viễn Thông (Hệ Thống Thông Minh Và IoT)">Kỹ Thuật Điện Tử - Viễn Thông (Hệ Thống Thông Minh Và IoT)</option>
+				<option value="Kỹ Thuật Điện Tử - Viễn Thông (Thiết Kế Vi Mạch Bản Dẫn)">Kỹ Thuật Điện Tử - Viễn Thông (Thiết Kế Vi Mạch Bản Dẫn)</option>
+				<option value="Kỹ Thuật Robot Và Trí Tuệ Nhân Tạo (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)">Kỹ Thuật Robot Và Trí Tuệ Nhân Tạo (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)</option>
+				<option value="Công Nghệ Thông Tin">Công Nghệ Thông Tin</option>
+				<option value="Kỹ Thuật Phần Mềm (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)">Kỹ Thuật Phần Mềm (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)</option>
+				<option value="Công Nghệ Thông Tin Việt Nhật">Công Nghệ Thông Tin Việt Nhật</option>
+				<option value="Khoa Học Máy Tính">Khoa Học Máy Tính</option>
+				<option value="Tài Năng Khoa Học Máy Tính">Tài Năng Khoa Học Máy Tính</option>
+				<option value="An Toàn Thông Tin (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)">An Toàn Thông Tin (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)</option>
+				<option value="Trí Tuệ Nhân Tạo">Trí Tuệ Nhân Tạo</option>
+				<option value="Kỹ Thuật Cơ Điện Tử">Kỹ Thuật Cơ Điện Tử</option>
+				<option value="Kỹ Thuật Cơ Khí">Kỹ Thuật Cơ Khí</option>
+				<option value="Vật Liệu Tiên Tiến Và Công Nghệ Nano">Vật Liệu Tiên Tiến Và Công Nghệ Nano</option>
+				<option value="Vật Liệu Thông Minh Và Trí Tuệ Nhân Tạo">Vật Liệu Thông Minh Và Trí Tuệ Nhân Tạo</option>
+				<option value="Chip Bán Dẫn Và Công Nghệ Đóng Gói">Chip Bán Dẫn Và Công Nghệ Đóng Gói</option>
+				<option value="Kỹ Thuật Ô Tô">Kỹ Thuật Ô Tô</option>
+				<option value="Cơ Điện Tử Ô Tô">Cơ Điện Tử Ô Tô</option>
+				<option value="Kỹ Thuật Phần Mềm Ô Tô">Kỹ Thuật Phần Mềm Ô Tô</option>
+				<option value="Quản Trị Kinh Doanh">Quản Trị Kinh Doanh</option>
+				<option value="Kế Toán">Kế Toán</option>
+				<option value="Tài Chính - Ngân Hàng">Tài Chính - Ngân Hàng</option>
+				<option value="Quản Trị Nhân Lực">Quản Trị Nhân Lực</option>
+				<option value="Luật Kinh Tế">Luật Kinh Tế</option>
+				<option value="Kinh Doanh Quốc Tế (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)">Kinh Doanh Quốc Tế (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)</option>
+				<option value="Logistics và Quản Lý Chuỗi Cung Ứng (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)">Logistics và Quản Lý Chuỗi Cung Ứng (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)</option>
 				<option value="Marketing">Marketing</option>
-				<option value="Ngon_ngu_anh">Ngôn ngữ Anh</option>
-				<option value="Ngon_ngu_trung">Ngôn ngữ Trung Quốc</option>
-				<option value="Ngon_ngu_han">Ngôn ngữ Hàn Quốc</option>
-				<option value="Ngon_ngu_nhat">Ngôn ngữ Nhật</option>
-				<option value="Ngon_ngu_phap">Ngôn ngữ Pháp</option>
-				<option value="Dong_phuong_hoc">Đông phương học</option>
-				<option value="Du_lich">Du lịch</option>
-				<option value="Kinh_doanh_du_lich_so">Kinh doanh du lịch số</option>
-				<option value="Quan_tri_khach_san">Quản trị khách sạn</option>
-				<option value="Dieu_duong">Điều dưỡng</option>
-				<option value="Duoc_hoc">Dược học</option>
-				<option value="Ky_thuat_xet_nghiem_y_hoc">Kỹ thuật xét nghiệm y học</option>
-				<option value="Y_khoa">Y khoa</option>
-				<option value="Rang_ham_mat">Răng-Hàm-Mặt</option>
+				<option value="Công Nghệ Tài Chính">Công Nghệ Tài Chính</option>
+				<option value="Kinh Tế Số">Kinh Tế Số</option>
+				<option value="Kinh Doanh Số">Kinh Doanh Số</option>
+				<option value="Thương Mại Điện Tử">Thương Mại Điện Tử</option>
+				<option value="Logistics Số">Logistics Số</option>
+				<option value="Công Nghệ Marketing">Công Nghệ Marketing</option>
+				<option value="Ngôn Ngữ Anh">Ngôn Ngữ Anh</option>
+				<option value="Ngôn Ngữ Trung Quốc">Ngôn Ngữ Trung Quốc</option>
+				<option value="Ngôn Ngữ Hàn Quốc">Ngôn Ngữ Hàn Quốc</option>
+				<option value="Ngôn Ngữ Nhật">Ngôn Ngữ Nhật</option>
+				<option value="Ngôn Ngữ Pháp">Ngôn Ngữ Pháp</option>
+				<option value="Đông Phương Học">Đông Phương Học</option>
+				<option value="Du Lịch (Định Hướng Quản Trị Du Lịch)">Du Lịch (Định Hướng Quản Trị Du Lịch)</option>
+				<option value="Kinh Doanh Du Lịch Số">Kinh Doanh Du Lịch Số</option>
+				<option value="Hướng Dẫn Du Lịch Quốc Tế">Hướng Dẫn Du Lịch Quốc Tế</option>
+				<option value="Quản Trị Khách Sạn">Quản Trị Khách Sạn</option>
+				<option value="Điều Dưỡng">Điều Dưỡng</option>
+				<option value="Dược Học">Dược Học</option>
+				<option value="Kỹ Thuật Phục Hồi Chức Năng">Kỹ Thuật Phục Hồi Chức Năng</option>
+				<option value="Kỹ Thuật Xét Nghiệm Y Học">Kỹ Thuật Xét Nghiệm Y Học</option>
+				<option value="Kỹ Thuật Hình Ảnh Y Học">Kỹ Thuật Hình Ảnh Y Học</option>
+				<option value="Y Khoa">Y Khoa</option>
+				<option value="Răng Hàm Mặt">Răng Hàm Mặt</option>
+				<option value="Quản Lý Bệnh Viện">Quản Lý Bệnh Viện</option>
+				<option value="Y Học Cổ Truyền">Y Học Cổ Truyền</option>
 			</select>
 			<select id="block${wishCount}">
-				<option value="Chon_to_hop">Chọn tổ hợp xét tuyển</option>
-				<option value="A00">A00 (Toán, Lý, Hóa)</option>
-				<option value="A01">A01 (Toán, Lý, Anh)</option>
-				<option value="A02">A02 (Toán, Vật lý, Sinh học)</option>
-				<option value="A10">A10 (Toán, Vật lý, Giáo dục công dân)</option>
-				<option value="B00">B00 (Toán, Hóa học, Sinh học)</option>
-				<option value="B08">B08 (Toán, Sinh học, Tiếng Anh)</option>
-				<option value="C00">C00 (Văn, Lịch sử, Địa lí)</option>
-				<option value="C01">C01 (Văn, Toán, Vật lí)</option>
-				<option value="C04">C04 (Văn, Toán, Địa lí)</option>
-				<option value="D01">D01 (Văn, Toán, tiếng Anh)</option>
-				<option value="D07">D07 (Toán, Hóa học, Tiếng Anh)</option>
-				<option value="D08">D08 (Toán, Sinh học, Tiếng Anh)</option>
-				<option value="D09">D09 (Toán, Lịch sử, Tiếng Anh)</option>
-				<option value="D10">D10 (Toán, Địa lí, Tiếng Anh)</option>
-				<option value="D15">D15 (Văn, Địa lí, Tiếng Anh)</option>
+				<option value="">Chọn tổ hợp xét tuyển</option>
 			</select>
 		</div>
 	</div>
@@ -106,7 +107,7 @@ newWish.innerHTML = `
 document.getElementById('wish-container').appendChild(newWish);
 document.getElementById('message').textContent = ""; // Xóa thông báo
 }
-        const districts = {
+const districts = {
             'An Giang': ['An Phú', 'Châu Đốc', 'Châu Phú', 'Châu Thành', 'Chợ Mới', 'Long Xuyên', 'Phú Tân', 'Tân Châu', 'Thoại Sơn', 'Tịnh Biên', 'Tri Tôn'],
     	    'Bà Rịa - Vũng Tàu': ['Vũng Tàu', 'Bà Rịa', 'Long Điền', 'Đất Đỏ', 'Xuyên Mộc'],
             'Bạc Liêu': ['Bạc Liêu', 'Giá Rai', 'Hòa Bình', 'Hồng Dân', 'Phước Long'],
@@ -317,3 +318,97 @@ document.getElementById('message').textContent = ""; // Xóa thông báo
                 this.setCustomValidity('');
             }
         });
+
+const blocks = {
+	'Công Nghệ Sinh Học': ['A00 (Toán, Vật lý, Hóa học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Hóa Học': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Điều Khiển và Tự Động Hóa': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Y Sinh (Hệ Tư Sinh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Điện Tử - Viễn Thông (Hệ Thống Thông Minh Và IoT)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Điện Tử - Viễn Thông (Thiết Kế Vi Mạch Bản Dẫn)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Robot Và Trí Tuệ Nhân Tạo (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Công Nghệ Thông Tin': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Phần Mềm (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Công Nghệ Thông Tin Việt Nhật': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D28 (Toán, Vật lý, Tiếng Nhật)'],
+	'Khoa Học Máy Tính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Tài Năng Khoa Học Máy Tính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'An Toàn Thông Tin (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Trí Tuệ Nhân Tạo': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Cơ Điện Tử': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A02 (Toán, Vật lý, Sinh học)', 'C01 (Ngữ văn, Toán, Vật lý)'],
+	'Kỹ Thuật Cơ Khí': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A02 (Toán, Vật lý, Sinh học)', 'C01 (Ngữ văn, Toán, Vật lý)'],
+	'Vật Liệu Tiên Tiến Và Công Nghệ Nano': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Vật Liệu Thông Minh Và Trí Tuệ Nhân Tạo': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Chip Bán Dẫn Và Công Nghệ Đóng Gói': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
+	'Cơ Điện Tử Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
+	'Kỹ Thuật Phần Mềm Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
+
+	'Quản Trị Kinh Doanh': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kế Toán': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Tài Chính - Ngân Hàng': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Quản Trị Nhân Lực': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Luật Kinh Tế': ['C00 (Ngữ văn, Lịch sử, Địa lý)', 'C04 (Ngữ văn, Toán, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D14 (Ngữ văn, Lịch sử, Tiếng Anh)'],
+	'Kinh Doanh Quốc Tế (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+	'Logistics và Quản Lý Chuỗi Cung Ứng (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+	'Marketing': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+	'Công Nghệ Tài Chính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kinh Tế Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kinh Doanh Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Thương Mại Điện Tử': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Logistics Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Công Nghệ Marketing': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+
+	'Ngôn Ngữ Anh': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
+	'Ngôn Ngữ Trung Quốc': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D04 (Ngữ văn, Toán, Tiếng Trung)', 'D09 (Toán, Lịch sử, Tiếng Anh)'],
+	'Ngôn Ngữ Hàn Quốc': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)', 'D02 (Ngữ văn, Toán, Tiếng Hàn)'],
+	'Ngôn Ngữ Nhật': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D06 (Ngữ văn, Toán, Tiếng Nhật)', 'D28 (Toán, Vật lý, Tiếng Nhật)'],
+	'Ngôn Ngữ Pháp': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D44 (Ngữ văn, Địa lý, Tiếng Pháp)', 'D64 (Ngữ văn, Lịch sử, Tiếng Anh)'],
+	'Đông Phương Học': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)'],
+	'Du Lịch (Định Hướng Quản Trị Du Lịch)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
+	'Kinh Doanh Du Lịch Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+	'Hướng Dẫn Du Lịch Quốc Tế': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
+	'Quản Trị Khách Sạn': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+
+	'Điều Dưỡng': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)'],
+	'Dược Học': ['A00 (Toán, Vật lý, Hóa học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Phục Hồi Chức Năng': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Xét Nghiệm Y Học': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Hình Ảnh Y Học': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Y Khoa': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Răng Hàm Mặt': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Quản Lý Bệnh Viện': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
+	'Y Học Cổ Truyền': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+}
+
+const setupDynamicBlocks = (majorSelect, blockSelect) => {
+	majorSelect.addEventListener('change', function() {
+		const selectedMajor = this.value;
+
+		// Cập nhật tổ hợp theo ngành chọn
+		blockSelect.innerHTML = '<option value="">Chọn tổ hợp xét tuyển</option>';
+		if (blocks[selectedMajor]) {
+			blocks[selectedMajor].forEach(block => {
+				const option = document.createElement('option');
+				option.value = block;
+				option.textContent = block;
+				blockSelect.appendChild(option);
+			});
+		}
+	});
+};
+
+// Nguyện vọng 1
+const majorSelect1 = document.getElementById('major1');
+const blockSelect1 = document.getElementById('block1');
+setupDynamicBlocks(majorSelect1, blockSelect1);
+
+// Nguyện vọng 2
+const majorSelect2 = document.getElementById('major2');
+const blockSelect2 = document.getElementById('block2');
+setupDynamicBlocks(majorSelect2, blockSelect2);
+
+// Nguyện vọng 3
+const majorSelect3 = document.getElementById('major3');
+const blockSelect3 = document.getElementById('block3');
+setupDynamicBlocks(majorSelect3, blockSelect3);
+
