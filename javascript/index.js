@@ -14,6 +14,18 @@ function showNotification(message) {
     }, 5000); // Ẩn thông báo sau 5 giây
 }
 
+document.getElementById('loginBtn').addEventListener('click', function() {
+    // Ẩn phần đăng ký và hiển thị phần đăng nhập
+    document.getElementById('registrationContainer').style.display = 'none'; // Ẩn phần đăng ký
+    document.getElementById('loginModal').style.display = 'block'; // Hiện phần đăng nhập
+});
+
+document.getElementById('signupBtn').addEventListener('click', function() {
+    // Ẩn phần đăng nhập và hiển thị phần đăng ký
+    document.getElementById('loginModal').style.display = 'none'; // Ẩn phần đăng nhập
+    document.getElementById('registrationContainer').style.display = 'block'; // Hiện phần đăng ký
+});
+
 // Xử lý đăng ký
 document.querySelector('form').onsubmit = function(event) {
     event.preventDefault(); // Ngăn chặn hành động gửi form mặc định
