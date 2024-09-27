@@ -55,19 +55,52 @@ main {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.services, .artists {
+.services {
+    display: block;
+    justify-content: space-between; /* Đảm bảo các thẻ service cách đều nhau */
+    padding: 0 10px; /* Thêm khoảng đệm từ hai lề trái và phải */
+
+}
+
+.artists {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.service, .artist {
+.service {
+    background-color: #e6ecf5;
+    padding: 15px;
+    margin: 10px 0; /* Giữ khoảng cách giữa các thẻ theo chiều dọc */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    max-width: max-content; /* Đặt giới hạn chiều rộng tối đa cho các thẻ */
+    box-sizing: border-box; /* Đảm bảo padding không làm vượt quá kích thước khung */
+}
+
+.artist {
     background-color: #e7e5e5;
     padding: 15px;
     margin: 10px;
     border-radius: 5px;
     flex: 1 1 30%;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.service img {
+    width: 95%;
+    height: auto;
+    padding-left: 20px;
+    border-radius: 10px;
+}
+.service a{
+    font-weight: bold;
+    color: rgb(253, 135, 0);
+    text-decoration: none;
+}
+
+.service a:hover {
+    text-decoration: underline;
 }
 
 footer {
