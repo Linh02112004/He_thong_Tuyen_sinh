@@ -105,8 +105,94 @@ newWish.innerHTML = `
 	</div>
 `;
 document.getElementById('wish-container').appendChild(newWish);
-document.getElementById('message').textContent = ""; // Xóa thông báo
+    document.getElementById('message').textContent = ""; // Xóa thông báo
+    // Cập nhật khối ngành cho nguyện vọng mới
+    const selectMajor = newWish.querySelector(`select[id="major${wishCount}"]`);
+    const selectBlock = newWish.querySelector(`select[id="block${wishCount}"]`);
+    updateBlocks(selectMajor, selectBlock);
 }
+const blocks = {
+	'Công Nghệ Sinh Học': ['A00 (Toán, Vật lý, Hóa học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Hóa Học': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Điều Khiển và Tự Động Hóa': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Y Sinh (Hệ Tư Sinh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Điện Tử - Viễn Thông (Hệ Thống Thông Minh Và IoT)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Điện Tử - Viễn Thông (Thiết Kế Vi Mạch Bản Dẫn)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Robot Và Trí Tuệ Nhân Tạo (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Công Nghệ Thông Tin': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Phần Mềm (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Công Nghệ Thông Tin Việt Nhật': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D28 (Toán, Vật lý, Tiếng Nhật)'],
+	'Khoa Học Máy Tính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Tài Năng Khoa Học Máy Tính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'An Toàn Thông Tin (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Trí Tuệ Nhân Tạo': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Cơ Điện Tử': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A02 (Toán, Vật lý, Sinh học)', 'C01 (Ngữ văn, Toán, Vật lý)'],
+	'Kỹ Thuật Cơ Khí': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A02 (Toán, Vật lý, Sinh học)', 'C01 (Ngữ văn, Toán, Vật lý)'],
+	'Vật Liệu Tiên Tiến Và Công Nghệ Nano': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Vật Liệu Thông Minh Và Trí Tuệ Nhân Tạo': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Chip Bán Dẫn Và Công Nghệ Đóng Gói': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
+	'Cơ Điện Tử Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
+	'Kỹ Thuật Phần Mềm Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
+
+	'Quản Trị Kinh Doanh': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kế Toán': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Tài Chính - Ngân Hàng': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Quản Trị Nhân Lực': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Luật Kinh Tế': ['C00 (Ngữ văn, Lịch sử, Địa lý)', 'C04 (Ngữ văn, Toán, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D14 (Ngữ văn, Lịch sử, Tiếng Anh)'],
+	'Kinh Doanh Quốc Tế (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+	'Logistics và Quản Lý Chuỗi Cung Ứng (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+	'Marketing': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+	'Công Nghệ Tài Chính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kinh Tế Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kinh Doanh Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Thương Mại Điện Tử': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Logistics Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Công Nghệ Marketing': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+
+	'Ngôn Ngữ Anh': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
+	'Ngôn Ngữ Trung Quốc': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D04 (Ngữ văn, Toán, Tiếng Trung)', 'D09 (Toán, Lịch sử, Tiếng Anh)'],
+	'Ngôn Ngữ Hàn Quốc': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)', 'D02 (Ngữ văn, Toán, Tiếng Hàn)'],
+	'Ngôn Ngữ Nhật': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D06 (Ngữ văn, Toán, Tiếng Nhật)', 'D28 (Toán, Vật lý, Tiếng Nhật)'],
+	'Ngôn Ngữ Pháp': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D44 (Ngữ văn, Địa lý, Tiếng Pháp)', 'D64 (Ngữ văn, Lịch sử, Tiếng Anh)'],
+	'Đông Phương Học': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)'],
+	'Du Lịch (Định Hướng Quản Trị Du Lịch)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
+	'Kinh Doanh Du Lịch Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+	'Hướng Dẫn Du Lịch Quốc Tế': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
+	'Quản Trị Khách Sạn': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
+
+	'Điều Dưỡng': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)'],
+	'Dược Học': ['A00 (Toán, Vật lý, Hóa học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Phục Hồi Chức Năng': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Xét Nghiệm Y Học': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Kỹ Thuật Hình Ảnh Y Học': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Y Khoa': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Răng Hàm Mặt': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+	'Quản Lý Bệnh Viện': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
+	'Y Học Cổ Truyền': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
+}
+function updateBlocks(selectMajor, selectBlock) {
+    selectMajor.addEventListener('change', function () {
+        const selectedMajor = this.value;
+        selectBlock.innerHTML = '<option value="">Chọn tổ hợp xét tuyển</option>';
+        
+        if (blocks[selectedMajor]) {
+            blocks[selectedMajor].forEach(block => {
+                const option = document.createElement('option');
+                option.value = block;
+                option.textContent = block;
+                selectBlock.appendChild(option);
+            });
+        }
+    });
+}
+
+// Thiết lập cho các nguyện vọng hiện tại
+document.querySelectorAll('.section').forEach((section) => {
+    const selectMajor = section.querySelector('select[id^="major"]');
+    const selectBlock = section.querySelector('select[id^="block"]');
+    updateBlocks(selectMajor, selectBlock);
+});
 const districts = {
             'An Giang': ['An Phú', 'Châu Đốc', 'Châu Phú', 'Châu Thành', 'Chợ Mới', 'Long Xuyên', 'Phú Tân', 'Tân Châu', 'Thoại Sơn', 'Tịnh Biên', 'Tri Tôn'],
     	    'Bà Rịa - Vũng Tàu': ['Vũng Tàu', 'Bà Rịa', 'Long Điền', 'Đất Đỏ', 'Xuyên Mộc'],
@@ -318,97 +404,4 @@ const districts = {
                 this.setCustomValidity('');
             }
         });
-
-const blocks = {
-	'Công Nghệ Sinh Học': ['A00 (Toán, Vật lý, Hóa học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Hóa Học': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Điều Khiển và Tự Động Hóa': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Y Sinh (Hệ Tư Sinh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Điện Tử - Viễn Thông (Hệ Thống Thông Minh Và IoT)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Điện Tử - Viễn Thông (Thiết Kế Vi Mạch Bản Dẫn)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Robot Và Trí Tuệ Nhân Tạo (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Công Nghệ Thông Tin': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Phần Mềm (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Công Nghệ Thông Tin Việt Nhật': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D28 (Toán, Vật lý, Tiếng Nhật)'],
-	'Khoa Học Máy Tính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Tài Năng Khoa Học Máy Tính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'An Toàn Thông Tin (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Trí Tuệ Nhân Tạo': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Cơ Điện Tử': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A02 (Toán, Vật lý, Sinh học)', 'C01 (Ngữ văn, Toán, Vật lý)'],
-	'Kỹ Thuật Cơ Khí': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A02 (Toán, Vật lý, Sinh học)', 'C01 (Ngữ văn, Toán, Vật lý)'],
-	'Vật Liệu Tiên Tiến Và Công Nghệ Nano': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Vật Liệu Thông Minh Và Trí Tuệ Nhân Tạo': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'C01 (Ngữ văn, Toán, Vật lý)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Chip Bán Dẫn Và Công Nghệ Đóng Gói': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
-	'Cơ Điện Tử Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
-	'Kỹ Thuật Phần Mềm Ô Tô': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'A10 (Toán, Vật lý, Giáo dục công dân)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
-
-	'Quản Trị Kinh Doanh': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kế Toán': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Tài Chính - Ngân Hàng': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Quản Trị Nhân Lực': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Luật Kinh Tế': ['C00 (Ngữ văn, Lịch sử, Địa lý)', 'C04 (Ngữ văn, Toán, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D14 (Ngữ văn, Lịch sử, Tiếng Anh)'],
-	'Kinh Doanh Quốc Tế (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
-	'Logistics và Quản Lý Chuỗi Cung Ứng (Một Số Học Phần Chuyên Ngành Học Bằng Tiếng Anh)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
-	'Marketing': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
-	'Công Nghệ Tài Chính': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kinh Tế Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kinh Doanh Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Thương Mại Điện Tử': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Logistics Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Công Nghệ Marketing': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-
-	'Ngôn Ngữ Anh': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
-	'Ngôn Ngữ Trung Quốc': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D04 (Ngữ văn, Toán, Tiếng Trung)', 'D09 (Toán, Lịch sử, Tiếng Anh)'],
-	'Ngôn Ngữ Hàn Quốc': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)', 'D02 (Ngữ văn, Toán, Tiếng Hàn)'],
-	'Ngôn Ngữ Nhật': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D06 (Ngữ văn, Toán, Tiếng Nhật)', 'D28 (Toán, Vật lý, Tiếng Nhật)'],
-	'Ngôn Ngữ Pháp': ['A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D44 (Ngữ văn, Địa lý, Tiếng Pháp)', 'D64 (Ngữ văn, Lịch sử, Tiếng Anh)'],
-	'Đông Phương Học': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D09 (Toán, Lịch sử, Tiếng Anh)'],
-	'Du Lịch (Định Hướng Quản Trị Du Lịch)': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
-	'Kinh Doanh Du Lịch Số': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
-	'Hướng Dẫn Du Lịch Quốc Tế': ['A01 (Toán, Vật lý, Tiếng Anh)', 'C00 (Ngữ văn, Lịch sử, Địa lý)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D15 (Ngữ văn, Địa lý, Tiếng Anh)'],
-	'Quản Trị Khách Sạn': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'D01 (Ngữ văn, Toán, Tiếng Anh)', 'D10 (Toán, Địa lý, Tiếng Anh)'],
-
-	'Điều Dưỡng': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)'],
-	'Dược Học': ['A00 (Toán, Vật lý, Hóa học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Phục Hồi Chức Năng': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Xét Nghiệm Y Học': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Kỹ Thuật Hình Ảnh Y Học': ['A02 (Toán, Vật lý, Sinh học)', 'B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Y Khoa': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Răng Hàm Mặt': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-	'Quản Lý Bệnh Viện': ['A00 (Toán, Vật lý, Hóa học)', 'A01 (Toán, Vật lý, Tiếng Anh)', 'B00 (Toán, Hóa học, Sinh học)', 'D01 (Ngữ văn, Toán, Tiếng Anh)'],
-	'Y Học Cổ Truyền': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
-}
-
-const setupDynamicBlocks = (majorSelect, blockSelect) => {
-	majorSelect.addEventListener('change', function() {
-		const selectedMajor = this.value;
-
-		// Cập nhật tổ hợp theo ngành chọn
-		blockSelect.innerHTML = '<option value="">Chọn tổ hợp xét tuyển</option>';
-		if (blocks[selectedMajor]) {
-			blocks[selectedMajor].forEach(block => {
-				const option = document.createElement('option');
-				option.value = block;
-				option.textContent = block;
-				blockSelect.appendChild(option);
-			});
-		}
-	});
-};
-
-// Nguyện vọng 1
-const majorSelect1 = document.getElementById('major1');
-const blockSelect1 = document.getElementById('block1');
-setupDynamicBlocks(majorSelect1, blockSelect1);
-
-// Nguyện vọng 2
-const majorSelect2 = document.getElementById('major2');
-const blockSelect2 = document.getElementById('block2');
-setupDynamicBlocks(majorSelect2, blockSelect2);
-
-// Nguyện vọng 3
-const majorSelect3 = document.getElementById('major3');
-const blockSelect3 = document.getElementById('block3');
-setupDynamicBlocks(majorSelect3, blockSelect3);
 
