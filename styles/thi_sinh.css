@@ -219,6 +219,18 @@
             text-align: center;
             margin-top: 10px;
         }
+        #loginBtn{
+            background: #ff5722; 
+            color: white; 
+            padding: 5px 10px; 
+            border-radius: 4px;
+        }
+        #signupBtn{
+            background: #ff5722; 
+            color: white; 
+            padding: 5px 10px; 
+            border-radius: 4px;
+        }
 		.footer {
     		display: flex;
     		align-items: center;
