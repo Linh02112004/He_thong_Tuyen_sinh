@@ -68,43 +68,97 @@ document.querySelector('form').onsubmit = function(event) {
     }
 };
 
+// Kiểm tra CMND/CCCD khi người dùng nhập
+document.getElementById('login_id').addEventListener('input', function() {
+    const loginId = document.getElementById('login_id').value;
+    const cmndError = document.querySelector('#login_id + .error'); // Vị trí để hiển thị lỗi bên dưới
+
+    // Xóa thông báo lỗi trước đó (nếu có)
+    if (cmndError) cmndError.remove();
+
+    // Nếu số CMND/CCCD chưa đủ 12 số
+    if (loginId.length !== 12) {
+        const error = document.createElement('span');
+        error.className = 'error';
+        error.style.color = 'red';
+        error.textContent = 'CMND/CCCD phải có đúng 12 số.';
+        document.getElementById('login_id').insertAdjacentElement('afterend', error);
+    }
+});
+
+// Kiểm tra CMND/CCCD khi người dùng nhập (chỉ kiểm tra khi loại tài khoản là thí sinh)
+document.getElementById('login_id').addEventListener('input', function() {
+    const loginId = document.getElementById('login_id').value;
+    const cmndError = document.querySelector('#login_id + .error');
+    const userType = document.querySelector('input[name="userType"]:checked').value;
+
+    // Xóa thông báo lỗi trước đó (nếu có)
+    if (cmndError) cmndError.remove();
+
+    // Chỉ kiểm tra định dạng CMND/CCCD nếu loại tài khoản là thí sinh
+    if (userType === 'student') {
+        if (loginId.length !== 12) {
+            const error = document.createElement('span');
+            error.className = 'error';
+            error.style.color = 'red';
+            error.textContent = 'CMND/CCCD phải có đúng 12 số.';
+            document.getElementById('login_id').insertAdjacentElement('afterend', error);
+        }
+    }
+});
+
 // Xử lý đăng nhập
 document.querySelector('#loginForm').onsubmit = function(event) {
     event.preventDefault(); // Ngăn chặn hành động gửi form mặc định
 
     const loginId = document.getElementById('login_id').value;
     const loginPassword = document.getElementById('login_password').value;
+    const cmndError = document.querySelector('#login_id + .error');
+    const userType = document.querySelector('input[name="userType"]:checked').value;
 
-    // Kiểm tra thông tin trong localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    // Xóa thông báo lỗi trước đó (nếu có)
+    if (cmndError) cmndError.remove();
 
-    const user = users.find(user => user.cmnd === loginId || user.phone === loginId || user.email === loginId);
-    
-    // Kiểm tra tài khoản Thí sinh
-    if (document.querySelector('input[name="userType"]:checked').value === 'student') {
+    if (userType === 'student') {
+        // Kiểm tra nếu loginId không phải là CMND/CCCD (phải có đúng 12 ký tự số)
+        if (!/^\d{12}$/.test(loginId)) {
+            const error = document.createElement('span');
+            error.className = 'error';
+            error.style.color = 'red';
+            error.textContent = 'CMND/CCCD phải có đúng 12 số.';
+            document.getElementById('login_id').insertAdjacentElement('afterend', error);
+            return; // Ngăn chặn tiếp tục nếu điều kiện không đạt
+        }
+
+        // Kiểm tra thông tin trong localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(user => user.cmnd === loginId);
+
         if (!user) {
-            showNotification('Tài khoản không tồn tại.'); // Thông báo nếu tài khoản không tồn tại
+            showNotification('Tài khoản không tồn tại.');
             return;
         }
 
         if (user.password !== loginPassword) {
-            showNotification('Mật khẩu không chính xác.'); // Thông báo nếu mật khẩu sai
+            showNotification('Mật khẩu không chính xác.');
             return;
         }
 
-        // Nếu thông tin là chính xác, chuyển hướng đến trang index1.html
+        // Nếu thông tin chính xác, chuyển hướng đến trang thi_sinh.html
         window.location.href = 'thi_sinh.html';
         return;
     }
 
-    // Kiểm tra tài khoản Cán bộ Tuyển sinh
-    if (loginId === 'admin1' && loginPassword === 'admin1') {
-        // Nếu thông tin đúng, chuyển hướng đến trang admin.html
-        window.location.href = 'admin.html';
-    } else {
-        showNotification('Tài khoản không tồn tại.'); // Thông báo nếu tài khoản không tồn tại
+    // Kiểm tra tài khoản Cán bộ Tuyển sinh (không kiểm tra định dạng CCCD)
+    if (userType === 'admin') {
+        if (loginId === 'admin1' && loginPassword === 'admin1') {
+            window.location.href = 'admin.html';
+        } else {
+            showNotification('Tài khoản không tồn tại.');
+        }
     }
 };
+
 
 // Thêm sự kiện cho các liên kết
 document.getElementById('backToRegister').addEventListener('click', function() {
@@ -209,11 +263,13 @@ function toggleFields() {
     const loginPasswordInput = document.getElementById('login_password');
 
     if (userType === 'admin') {
-        loginLabel.textContent = 'Tên đăng nhập *'; // Thay đổi nhãn cho Cán bộ Tuyển sinh
+        // Thay đổi nhãn cho Cán bộ Tuyển sinh với dấu * màu đỏ
+        loginLabel.innerHTML = 'Tên đăng nhập <span style="color: red;">*</span>'; 
         loginIdInput.value = ''; // Xóa thông tin đã nhập
         loginPasswordInput.value = ''; // Xóa mật khẩu đã nhập
     } else {
-        loginLabel.textContent = 'Số CMND/CCCD *'; // Trở về nhãn cũ cho Thí sinh
+        // Trở về nhãn cũ cho Thí sinh (không dấu * màu đỏ)
+        loginLabel.innerHTML = 'Số CMND/CCCD *'; 
         loginIdInput.value = ''; // Xóa thông tin đã nhập
         loginPasswordInput.value = ''; // Xóa mật khẩu đã nhập
     }
