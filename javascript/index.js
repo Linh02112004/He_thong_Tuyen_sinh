@@ -47,17 +47,10 @@ document.querySelector('form').onsubmit = function(event) {
     const isPhoneExists = users.some(user => user.phone === phone);
     const isEmailExists = users.some(user => user.email === email);
 
-    if (isCMNDExists) {
-        showNotification('CMND/CCCD đã được đăng ký.');
-    } else if (isEmailExists) {
-        showNotification('Email đã được đăng ký.');
-    } else if (isPhoneExists) {
-        showNotification('Số điện thoại đã được đăng ký.');
-    } else {
+    if (!isCMNDExists && !isEmailExists && !isPhoneExists) {
         // Lưu thông tin người dùng
         users.push({ cmnd, phone, email, password });
         localStorage.setItem('users', JSON.stringify(users));
-        showNotification('Đăng ký thành công!');
 
         // Xóa thông tin đã nhập
         clearForm();
@@ -67,6 +60,7 @@ document.querySelector('form').onsubmit = function(event) {
         document.getElementById('loginModal').style.display = 'block'; // Hiện phần đăng nhập
     }
 };
+
 
 // Kiểm tra CMND/CCCD khi người dùng nhập
 document.getElementById('login_id').addEventListener('input', function() {

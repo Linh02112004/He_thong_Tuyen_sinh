@@ -10,18 +10,18 @@
 <body>
 	<div class="overlay"></div> <!-- Lớp phủ màu mờ -->
 
-<header>
-    <div class="logo">
-        <img src="./styles/pictures1/logo1.jpg" alt="Logo"> 
-    </div>
-    <nav>
-        <a href="#">Hướng dẫn đăng ký</a>
-        <a href="#">Tin tức</a>
-        <a href="#">Đăng ký xét tuyển</a>
-        <a href="#" id="loginBtn">Đăng nhập</a>
-        <a href="#" id="signupBtn">Đăng ký</a>
-    </nav>
-</header>
+	<header>
+		<div class="logo">
+			<img src="./styles/pictures1/logo1.jpg" alt="Logo"> 
+		</div>
+		<nav>
+			<a href="#">Hướng dẫn đăng ký</a>
+			<a href="#">Tin tức</a>
+			<a href="#">Đăng ký xét tuyển</a>
+			<div id="userName" style="display: none;"></div> <!-- Thay span bằng div -->
+			<a href="./index.html" id="logoutBtn">Đăng xuất</a>
+		</nav>
+	</header>			
     <div class="form-container">
 		<div class="container">
         <form id="thong_tin_ca_nhan">
@@ -492,108 +492,105 @@
 	<button class="save-button">LƯU THAY ĐỔI</button>
 	</div>
 	</div>
-	
     </form>
     </div>
     <div class="form-container">
 		<div class="container">
 			<form id="thong_tin_hoc_ba">
-		   <h1>NHẬP THÔNG TIN HỌC BẠ</h1>
-		   <h2>Bảng điểm học bạ</h2>
-			<table>
-			   <thead>
-				   <tr>
-					   <th>Môn học</th>
-					   <th colspan="2">Lớp 11</th>
-					   <th colspan="2">Lớp 12</th>
-				   </tr>
-				   <tr>
-					   <th></th>
-					   <th>Kỳ 1</th>
-					   <th>Kỳ 2</th>
-					   <th>Kỳ 1</th>
-				   </tr>
-			   </thead>
-			   <tbody>
-				   <tr>
-					   <td>Toán</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-				   <tr>
-					   <td>Lý</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-				   <tr>
-					   <td>Hóa</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   
-				   </tr>
-				   <tr>
-					   <td>Sinh</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   
-				   </tr>
-				   <tr>
-					   <td>Văn</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-				   <tr>
-					   <td>Sử</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-				   <tr>
-					   <td>Địa</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-				   <tr>
-					   <td>Tiếng Anh</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-				   <tr>
-					   <td>Giáo Dục Công Dân</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-				   <tr>
-					   <td>Tiếng Nhật</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-				   <tr>
-					   <td>Tiếng Trung</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   
-				   </tr>
-				   <tr>
-					   <td>Tiếng Hàn</td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-					   <td><input type="number" step="0.1" min="0" max="10"></td>
-				   </tr>
-			   </tbody>
-		   </table>
-		   <button class="save-button">LƯU THAY ĐỔI</button>
-			</form>
+				<h1>NHẬP THÔNG TIN HỌC BẠ</h1>
+				<h2>Bảng điểm học bạ</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Môn học</th>
+							<th colspan="2">Lớp 11</th>
+							<th colspan="2">Lớp 12</th>
+						</tr>
+						<tr>
+							<th></th>
+							<th>Kỳ 1</th>
+							<th>Kỳ 2</th>
+							<th>Kỳ 1</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Toán</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="toan_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="toan_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="toan_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Lý</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="ly_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="ly_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="ly_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Hóa</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="hoa_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="hoa_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="hoa_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Sinh</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="sinh_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="sinh_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="sinh_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Văn</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="van_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="van_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="van_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Sử</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="su_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="su_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="su_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Địa</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="dia_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="dia_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="dia_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Tiếng Anh</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="anh_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="anh_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="anh_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Giáo Dục Công Dân</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="gdcd_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="gdcd_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="gdcd_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Tiếng Nhật</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="nhat_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="nhat_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="nhat_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Tiếng Trung</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="trung_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="trung_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="trung_ky1_lop12"></td>
+						</tr>
+						<tr>
+							<td>Tiếng Hàn</td>
+							<td><input type="number" step="0.1" min="0" max="10" id="han_ky1_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="han_ky2_lop11"></td>
+							<td><input type="number" step="0.1" min="0" max="10" id="han_ky1_lop12"></td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="save-button" type="button" id="saveForm">LƯU THAY ĐỔI</button>
+			</form>		
+			
 	   </div>
 	</div> 
 	<div class ="form-container1">
@@ -872,6 +869,7 @@
 			</div>
 		</div>
 	</footer>
+	<script src ="./javascript/thi_sinh.js"></script>
     <script src ="./javascript/thi_sinh_1.js"></script>
 	<script src ="./javascript/thi_sinh_2.js"></script>
 	<script src ="./javascript/thi_sinh_3.js"></script>
