@@ -41,9 +41,19 @@ function savedataHba() {
 
     // Lưu dữ liệu vào Local Storage
     localStorage.setItem('hoc_ba_data', JSON.stringify(dataHba));
+
+    // Thay đổi chữ nút lưu
+    const saveButton = document.getElementById('save_hoc_ba');
+    if (saveButton) {
+        saveButton.textContent = 'Đã Lưu'; // Đổi chữ trên nút
+        saveButton.disabled = true; // Vô hiệu hóa nút
+    }
+
+    // Hiển thị thông báo thành công
+    alert('Thông tin học bạ đã được lưu thành công!');
 }
 
-// Hàm hiển thị dữ liệu từ Local Storage
+// Hàm hiển thị dữ liệu từ Local Storage và kiểm tra trạng thái lưu
 function loadFormData_Hba() {
     const savedData_Hba = localStorage.getItem('hoc_ba_data');
     
@@ -86,10 +96,17 @@ function loadFormData_Hba() {
         document.getElementById('han_ky1_lop11').value = data_Hba.han_ky1_lop11;
         document.getElementById('han_ky2_lop11').value = data_Hba.han_ky2_lop11;
         document.getElementById('han_ky1_lop12').value = data_Hba.han_ky1_lop12;
+
+        // Cập nhật trạng thái nút lưu
+        const saveButton = document.getElementById('save_hoc_ba');
+        if (saveButton) {
+            saveButton.textContent = 'ĐÃ LƯU'; // Đổi chữ trên nút
+            saveButton.disabled = true; // Vô hiệu hóa nút
+        }
     }
 }
 
-// Gán sự kiện cho nút lưu
-document.getElementById('save_hoc_ba').addEventListener('click', savedataHba);
-
-window.onload = loadFormData_Hba;
+// Gọi hàm loadFormData_Hba khi trang được tải
+window.onload = function() {
+    loadFormData_Hba();
+};

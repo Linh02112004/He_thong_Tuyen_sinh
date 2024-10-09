@@ -143,11 +143,21 @@ const districts = {
 	
 
 	// Biến kiểm tra xem thông tin đã được lưu hay chưa
-    let isSaved = false;
+let isSaved = false;
 
-    // Lắng nghe sự kiện nhấn nút lưu
-    document.getElementById('save_thong_tin').addEventListener('click', function(event) {
-        event.preventDefault(); // Ngăn biểu mẫu gửi đi
+// Hàm để kiểm tra xem thông tin đã được lưu chưa từ Local Storage
+function checkIfSaved() {
+    const savedata_ttin = localStorage.getItem('userInfo');
+    if (savedata_ttin) {
+        isSaved = true;
+        document.getElementById('save_thong_tin').textContent = 'ĐÃ LƯU'; // Đổi văn bản nút
+        document.getElementById('save_thong_tin').disabled = true; // Vô hiệu hóa nút
+    }
+}
+
+// Lắng nghe sự kiện nhấn nút lưu
+document.getElementById('save_thong_tin').addEventListener('click', function(event) {
+    event.preventDefault(); // Ngăn biểu mẫu gửi đi
 
     // Kiểm tra xem thông tin đã được lưu chưa
     if (isSaved) {
@@ -200,12 +210,19 @@ const districts = {
     // Đánh dấu là đã lưu
     isSaved = true;
 
+    // Đổi văn bản nút thành "Đã Lưu" và vô hiệu hóa nút
+    const saveButton = document.getElementById('save_thong_tin');
+    saveButton.textContent = 'Đã Lưu';
+    saveButton.disabled = true; // Vô hiệu hóa nút
+
     // Hiển thị thông báo thành công
     alert('Thông tin cá nhân đã được lưu thành công!');
 });
 
+// Tải dữ liệu người dùng từ Local Storage khi trang được tải lại
 document.addEventListener('DOMContentLoaded', function () {
     loadUserInfo();
+    checkIfSaved(); // Kiểm tra xem thông tin đã được lưu chưa
 });
 
 function loadUserInfo() {
@@ -272,11 +289,11 @@ function loadUserInfo() {
     }
 }
 
-        // Gọi hàm khi trang tải lại
-        // Gọi cả hai hàm khi trang tải
-        window.onload = function() {
-            loadUserInfo();
-        };
+window.onload = function() {
+    loadUserInfo();
+    checkIfSaved(); // Kiểm tra xem thông tin đã được lưu chưa khi tải trang
+};
+
 	
 	
 		const setupDynamicDistricts = (provinceSelect, districtSelect, provinceCodeInput) => {
