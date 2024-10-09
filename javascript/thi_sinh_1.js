@@ -1,4 +1,3 @@
-
 const districts = {
             'An Giang': ['Thành phố Long Xuyên', 'Thành phố Châu Đốc', 'Huyện An Phú', 'Thị xã Tân Châu', 'Huyện Phú Tân', 'Huyện Châu Phú', 'Huyện Tịnh Biên', 'Huyện Tri Tôn', 'Huyện Thoại Sơn'],
     	    'Bà Rịa - Vũng Tàu': ['Thành phố Vũng Tàu', 'Thành phố Bà Rịa', 'Huyện Châu Đức', 'Huyện Xuyên Mộc', 'Huyện Long Điền',  'Huyện Đất Đỏ', 'Thị xã Phú Mỹ', 'Huyện Côn Đảo'],
@@ -142,7 +141,145 @@ const districts = {
 			'Yên Bái' : '15'
     };
 	
-        const setupDynamicDistricts = (provinceSelect, districtSelect, provinceCodeInput) => {
+
+	// Biến kiểm tra xem thông tin đã được lưu hay chưa
+    let isSaved = false;
+
+    // Lắng nghe sự kiện nhấn nút lưu
+    document.getElementById('save_thong_tin').addEventListener('click', function(event) {
+        event.preventDefault(); // Ngăn biểu mẫu gửi đi
+
+    // Kiểm tra xem thông tin đã được lưu chưa
+    if (isSaved) {
+        alert('Thông tin đã được lưu trước đó.');
+        return; // Ngừng thực hiện nếu đã lưu
+    }
+
+    // Lấy giá trị từ các trường trong form
+    let userInfo = {
+        name: document.getElementById('name').value,
+        dob: document.getElementById('dob').value,
+        gender: document.getElementById('gender').value,
+        email: document.getElementById('email').value,
+        ethnicity: document.getElementById('ethnicity').value,
+        religion: document.getElementById('religion').value,
+        identity: document.getElementById('identity').value,
+        issueDate: document.getElementById('issueDate').value,
+        issuedBy: document.getElementById('issuedBy').value,
+        address: document.getElementById('address').value,
+        studentPhone: document.getElementById('studentPhone').value,
+        parentPhone: document.getElementById('parentPhone').value,
+        provinceCode: document.getElementById('provinceCode').value,
+        province: document.getElementById('province').value,
+        district: document.getElementById('district').value,
+        ward: document.getElementById('ward').value,
+        village: document.getElementById('village').value,
+        schoolProvince10: document.getElementById('schoolProvince10').value,
+        schoolName10: document.getElementById('schoolName10').value,
+        schoolProvinceCode10: document.getElementById('schoolProvinceCode10').value,
+        schoolCode10: document.getElementById('schoolCode10').value,
+        schoolDistrict10: document.getElementById('schoolDistrict10').value,
+        districtCode10: document.getElementById('districtCode10').value,
+        schoolProvince11: document.getElementById('schoolProvince11').value,
+        schoolName11: document.getElementById('schoolName11').value,
+        schoolProvinceCode11: document.getElementById('schoolProvinceCode11').value,
+        schoolCode11: document.getElementById('schoolCode11').value,
+        schoolDistrict11: document.getElementById('schoolDistrict11').value,
+        districtCode11: document.getElementById('districtCode11').value,
+        schoolProvince12: document.getElementById('schoolProvince12').value,
+        schoolName12: document.getElementById('schoolName12').value,
+        schoolProvinceCode12: document.getElementById('schoolProvinceCode12').value,
+        schoolCode12: document.getElementById('schoolCode12').value,
+        schoolDistrict12: document.getElementById('schoolDistrict12').value,
+        districtCode12: document.getElementById('districtCode12').value,
+    };
+
+    // Lưu dữ liệu vào Local Storage
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
+    // Đánh dấu là đã lưu
+    isSaved = true;
+
+    // Hiển thị thông báo thành công
+    alert('Thông tin cá nhân đã được lưu thành công!');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    loadUserInfo();
+});
+
+function loadUserInfo() {
+    const savedata_ttin = localStorage.getItem('userInfo');
+    if (savedata_ttin) {
+        const data_ttin = JSON.parse(savedata_ttin);
+
+        // Gán giá trị cho các trường input
+        document.getElementById('name').value = data_ttin.name || '';
+        document.getElementById('dob').value = data_ttin.dob || '';
+        document.getElementById('email').value = data_ttin.email || '';
+        document.getElementById('ethnicity').value = data_ttin.ethnicity || '';
+        document.getElementById('identity').value = data_ttin.identity || '';
+        document.getElementById('issueDate').value = data_ttin.issueDate || '';
+        document.getElementById('issuedBy').value = data_ttin.issuedBy || '';
+        document.getElementById('address').value = data_ttin.address || '';
+        document.getElementById('studentPhone').value = data_ttin.studentPhone || '';
+        document.getElementById('parentPhone').value = data_ttin.parentPhone || '';
+        document.getElementById('village').value = data_ttin.village || '';
+        document.getElementById('ward').value = data_ttin.ward || '';
+
+        // Gán giá trị cho các trường select
+        const genderSelect = document.getElementById('gender');
+        if (genderSelect) genderSelect.value = data_ttin.gender || '';
+
+        const religionSelect = document.getElementById('religion');
+        if (religionSelect) religionSelect.value = data_ttin.religion || '';
+
+        const provinceSelect = document.getElementById('province');
+        if (provinceSelect) provinceSelect.value = data_ttin.province || '';
+
+        const districtSelect = document.getElementById('district');
+        if (districtSelect) districtSelect.value = data_ttin.district || '';
+
+        // Lớp 10
+        document.getElementById('schoolName10').value = data_ttin.schoolName10 || '';
+        const schoolProvince10Select = document.getElementById('schoolProvince10');
+        if (schoolProvince10Select) schoolProvince10Select.value = data_ttin.schoolProvince10 || '';
+        const schoolDistrict10Select = document.getElementById('schoolDistrict10');
+        if (schoolDistrict10Select) schoolDistrict10Select.value = data_ttin.schoolDistrict10 || '';
+        document.getElementById('schoolCode10').value = data_ttin.schoolCode10 || '';
+        document.getElementById('schoolProvinceCode10').value = data_ttin.schoolProvinceCode10 || '';
+        document.getElementById('districtCode10').value = data_ttin.districtCode10 || '';
+
+        // Lớp 11
+        document.getElementById('schoolName11').value = data_ttin.schoolName11 || '';
+        const schoolProvince11Select = document.getElementById('schoolProvince11');
+        if (schoolProvince11Select) schoolProvince11Select.value = data_ttin.schoolProvince11 || '';
+        const schoolDistrict11Select = document.getElementById('schoolDistrict11');
+        if (schoolDistrict11Select) schoolDistrict11Select.value = data_ttin.schoolDistrict11 || '';
+        document.getElementById('schoolCode11').value = data_ttin.schoolCode11 || '';
+        document.getElementById('schoolProvinceCode11').value = data_ttin.schoolProvinceCode11 || '';
+        document.getElementById('districtCode11').value = data_ttin.districtCode11 || '';
+
+        // Lớp 12
+        document.getElementById('schoolName12').value = data_ttin.schoolName12 || '';
+        const schoolProvince12Select = document.getElementById('schoolProvince12');
+        if (schoolProvince12Select) schoolProvince12Select.value = data_ttin.schoolProvince12 || '';
+        const schoolDistrict12Select = document.getElementById('schoolDistrict12');
+        if (schoolDistrict12Select) schoolDistrict12Select.value = data_ttin.schoolDistrict12 || '';
+        document.getElementById('schoolCode12').value = data_ttin.schoolCode12 || '';
+        document.getElementById('schoolProvinceCode12').value = data_ttin.schoolProvinceCode12 || '';
+        document.getElementById('districtCode12').value = data_ttin.districtCode12 || '';
+    }
+}
+
+        // Gọi hàm khi trang tải lại
+        // Gọi cả hai hàm khi trang tải
+        window.onload = function() {
+            loadUserInfo();
+        };
+	
+	
+		const setupDynamicDistricts = (provinceSelect, districtSelect, provinceCodeInput) => {
             provinceSelect.addEventListener('change', function() {
                 const selectedProvince = this.value;
 
@@ -181,16 +318,16 @@ const districts = {
         const schoolProvinceCodeInput11 = document.getElementById('schoolProvinceCode11');
         setupDynamicDistricts(schoolProvinceSelect11, schoolDistrictSelect11, schoolProvinceCodeInput11);
 
-	// Lớp 12
+	    // Lớp 12
         const schoolProvinceSelect12 = document.getElementById('schoolProvince12');
         const schoolDistrictSelect12 = document.getElementById('schoolDistrict12');
         const schoolProvinceCodeInput12 = document.getElementById('schoolProvinceCode12');
         setupDynamicDistricts(schoolProvinceSelect12, schoolDistrictSelect12, schoolProvinceCodeInput12);
 
-	// Kiểm tra định dạng số ĐT 
-       const phoneInput = document.getElementById('phone');
+	    // Kiểm tra định dạng số ĐT 
+        const phoneInput_Std = document.getElementById('studentPhone');
 
-        phoneInput.addEventListener('input', function() {
+	    phoneInput_Std.addEventListener('input', function() {
             if (this.validity.valueMissing) {
                 this.setCustomValidity('Phải điền ô này');
             } else if (this.validity.patternMismatch) {
@@ -199,8 +336,22 @@ const districts = {
                 this.setCustomValidity('');
             }
         });
-	// Kiểm tra định dạng số CCCD
-	 identityInput.addEventListener('input', function() {
+
+		const phoneInput_Pr = document.getElementById('parentPhone');
+
+        phoneInput_Pr.addEventListener('input', function() {
+            if (this.validity.valueMissing) {
+                this.setCustomValidity('Phải điền ô này');
+            } else if (this.validity.patternMismatch) {
+                this.setCustomValidity('Số điện thoại phải gồm 10 chữ số.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+		const identityInput = document.getElementById('identity');
+	    // Kiểm tra định dạng số CCCD
+	    identityInput.addEventListener('input', function() {
             if (this.validity.valueMissing) {
                 this.setCustomValidity('Phải điền ô này');
             } else if (this.validity.patternMismatch) {
@@ -208,5 +359,4 @@ const districts = {
             } else {
                 this.setCustomValidity('');
             }
-        });
-		
+        });	
