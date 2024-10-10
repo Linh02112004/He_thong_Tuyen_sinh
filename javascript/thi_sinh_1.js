@@ -196,9 +196,9 @@ function saveReportCard_Ttin() {
     showNotification('Thông tin cá nhân đã được lưu thành công!');
 
     // Đổi chữ nút lưu thành ĐÃ LƯU và vô hiệu hóa
-    const saveButton_Ttin = document.getElementById('save_thong_tin');
-    saveButton_Ttin.textContent = 'ĐÃ LƯU';
-    saveButton_Ttin.disabled = true;
+    //const saveButton_Ttin = document.getElementById('save_thong_tin');
+    //saveButton_Ttin.textContent = 'ĐÃ LƯU';
+    //saveButton_Ttin.disabled = true;
 }
 
 // Hàm tải thông tin cá nhân

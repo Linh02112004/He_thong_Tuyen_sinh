@@ -1,4 +1,4 @@
-let wishCount = 0; // Đếm số nguyện vọng hiện tại
+let wishCount = 3; // Đếm số nguyện vọng hiện tại
 
 function deleteWish(wishId) {
 const wishElement = document.getElementById(wishId);
@@ -187,8 +187,8 @@ function updateBlocks(selectMajor, selectBlock) {
 document.addEventListener('change', function(event) {
     if (event.target.matches('select[id^="major"]')) {
         const selectMajor = event.target;
-        const selectBlock = document.querySelector(`#block${selectMajor.id.replace('major', '')}`);
-        updateBlocks(selectMajor, selectBlock);
+       const selectBlock = document.querySelector(`#block${selectMajor.id.replace('major', '')}`);
+       updateBlocks(selectMajor, selectBlock);
     }
 });
 
@@ -241,9 +241,9 @@ function saveWishes() {
     showNotification('Nguyện vọng đã được lưu thành công!');
     
     // Đổi chữ nút lưu thành ĐÃ LƯU và vô hiệu hóa
-    const saveButton_Wishes = document.getElementById('save_wishes');
-    saveButton_Wishes.textContent = 'ĐÃ LƯU';
-    saveButton_Wishes.disabled = true;
+    //const saveButton_Wishes = document.getElementById('save_wishes');
+    //saveButton_Wishes.textContent = 'ĐÃ LƯU';
+    //saveButton_Wishes.disabled = true;
 }
 
 // Hàm tải nguyện vọng
@@ -286,8 +286,8 @@ function checkIfSavedwish() {
 		document.getElementById('deleteWishbutton').style.display = 'none';
 		document.getElementById('deleteWishbutton').disabled = true; // Vô hiệu hóa nút
 		document.getElementById('addWishBtn').style.display = 'none'; // Đổi văn bản nút
-        document.getElementById('save_nguyen_vong').textContent = 'ĐÃ LƯU'; // Đổi văn bản nút
-        document.getElementById('save_nguyen_vong').disabled = true; // Vô hiệu hóa nút
+        //document.getElementById('save_nguyen_vong').textContent = 'ĐÃ LƯU'; // Đổi văn bản nút
+        //document.getElementById('save_nguyen_vong').disabled = true; // Vô hiệu hóa nút
     }
 }
 
