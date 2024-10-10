@@ -342,3 +342,84 @@ function updateDistricts(province, districtSelect, callback) {
 function getDistrictsByProvince(province) {
     return districts[province] || [];
 }
+const setupDynamicDistricts = (provinceSelect, districtSelect, provinceCodeInput) => {
+    provinceSelect.addEventListener('change', function() {
+        const selectedProvince = this.value;
+
+        // Cập nhật mã tỉnh
+        const code = provinceCodes[selectedProvince] || '';
+        provinceCodeInput.value = code;
+
+        // Cập nhật danh sách quận/huyện
+        districtSelect.innerHTML = '<option value="">Chọn huyện</option>';
+        if (districts[selectedProvince]) {
+            districts[selectedProvince].forEach(district => {
+                const option = document.createElement('option');
+                option.value = district;
+                option.textContent = district;
+                districtSelect.appendChild(option);
+            });
+        }
+    });
+};
+
+// Thông tin cá nhân
+const provinceSelect = document.getElementById('province');
+const districtSelect = document.getElementById('district');
+const provinceCodeInput = document.getElementById('provinceCode');
+setupDynamicDistricts(provinceSelect, districtSelect, provinceCodeInput);
+
+// Lớp 10
+const schoolProvinceSelect10 = document.getElementById('schoolProvince10');
+const schoolDistrictSelect10 = document.getElementById('schoolDistrict10');
+const schoolProvinceCodeInput10 = document.getElementById('schoolProvinceCode10');
+setupDynamicDistricts(schoolProvinceSelect10, schoolDistrictSelect10, schoolProvinceCodeInput10);
+
+// Lớp 11
+const schoolProvinceSelect11 = document.getElementById('schoolProvince11');
+const schoolDistrictSelect11 = document.getElementById('schoolDistrict11');
+const schoolProvinceCodeInput11 = document.getElementById('schoolProvinceCode11');
+setupDynamicDistricts(schoolProvinceSelect11, schoolDistrictSelect11, schoolProvinceCodeInput11);
+
+// Lớp 12
+const schoolProvinceSelect12 = document.getElementById('schoolProvince12');
+const schoolDistrictSelect12 = document.getElementById('schoolDistrict12');
+const schoolProvinceCodeInput12 = document.getElementById('schoolProvinceCode12');
+setupDynamicDistricts(schoolProvinceSelect12, schoolDistrictSelect12, schoolProvinceCodeInput12);
+
+ // Kiểm tra định dạng số ĐT 
+ const phoneInput_Std = document.getElementById('studentPhone');
+
+ phoneInput_Std.addEventListener('input', function() {
+     if (this.validity.valueMissing) {
+         this.setCustomValidity('Phải điền ô này');
+     } else if (this.validity.patternMismatch) {
+         this.setCustomValidity('Số điện thoại phải gồm 10 chữ số.');
+     } else {
+         this.setCustomValidity('');
+     }
+ });
+
+ const phoneInput_Pr = document.getElementById('parentPhone');
+
+ phoneInput_Pr.addEventListener('input', function() {
+     if (this.validity.valueMissing) {
+         this.setCustomValidity('Phải điền ô này');
+     } else if (this.validity.patternMismatch) {
+         this.setCustomValidity('Số điện thoại phải gồm 10 chữ số.');
+     } else {
+         this.setCustomValidity('');
+     }
+ });
+
+ const identityInput = document.getElementById('identity');
+ // Kiểm tra định dạng số CCCD
+ identityInput.addEventListener('input', function() {
+     if (this.validity.valueMissing) {
+         this.setCustomValidity('Phải điền ô này');
+     } else if (this.validity.patternMismatch) {
+         this.setCustomValidity('Số CCCD phải gồm 12 chữ số.');
+     } else {
+         this.setCustomValidity('');
+     }
+ });	
