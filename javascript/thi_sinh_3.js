@@ -1,4 +1,4 @@
-let wishCount = 3; // Đếm số nguyện vọng hiện tại
+let wishCount = 0; // Đếm số nguyện vọng hiện tại
 
 function deleteWish(wishId) {
 const wishElement = document.getElementById(wishId);
@@ -192,3 +192,38 @@ document.querySelectorAll('.section').forEach((section) => {
     const selectBlock = section.querySelector('select[id^="block"]');
     updateBlocks(selectMajor, selectBlock);
 });
+
+function saveWishes() {
+	const wishes = [];
+	const sections = document.querySelectorAll('.section');
+	sections.forEach(section => {
+		const majorSelect = section.querySelector('select[id^="major"]');
+		const blockSelect = section.querySelector('select[id^="block"]');
+		wishes.push({
+			major: majorSelect.value,
+			block: blockSelect.value
+		});
+	});
+	localStorage.setItem('wishes', JSON.stringify(wishes));
+	alert('Đã lưu nguyện vọng!');
+}
+
+function loadWishes() {
+	const savedWishes = JSON.parse(localStorage.getItem('wishes'));
+	if (savedWishes) {
+		savedWishes.forEach((wish, index) => {
+			if (index < 3) { // Chỉ cho phép tải tối đa 3 nguyện vọng
+				wishCount++;
+				addWish();
+				const currentWish = document.getElementById(`wish-${wishCount}`);
+				const majorSelect = currentWish.querySelector('select[id^="major"]');
+				const blockSelect = currentWish.querySelector('select[id^="block"]');
+				majorSelect.value = wish.major;
+				blockSelect.value = wish.block;
+			}
+		});
+		document.getElementById('message').textContent = ""; // Xóa thông báo
+	} else {
+		alert('Không có nguyện vọng nào được lưu!');
+	}
+}
