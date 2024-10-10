@@ -140,33 +140,17 @@ const districts = {
 			'Vĩnh Phúc' : '26',
 			'Yên Bái' : '15'
     };
-	
 
-	// Biến kiểm tra xem thông tin đã được lưu hay chưa
-let isSaved = false;
-
-// Hàm để kiểm tra xem thông tin đã được lưu chưa từ Local Storage
-function checkIfSaved() {
-    const savedata_ttin = localStorage.getItem('userInfo');
-    if (savedata_ttin) {
-        isSaved = true;
-        document.getElementById('save_thong_tin').textContent = 'ĐÃ LƯU'; // Đổi văn bản nút
-        document.getElementById('save_thong_tin').disabled = true; // Vô hiệu hóa nút
-    }
-}
-
-// Lắng nghe sự kiện nhấn nút lưu
-document.getElementById('save_thong_tin').addEventListener('click', function(event) {
-    event.preventDefault(); // Ngăn biểu mẫu gửi đi
-
-    // Kiểm tra xem thông tin đã được lưu chưa
-    if (isSaved) {
-        alert('Thông tin đã được lưu trước đó.');
-        return; // Ngừng thực hiện nếu đã lưu
+    // Hàm lưu thông tin cá nhân
+function saveReportCard_Ttin() {
+    const loggedInCmnd = localStorage.getItem('loggedInCmnd'); // Lấy CCCD đã lưu sau khi đăng nhập
+    if (!loggedInCmnd) {
+        showNotification('Vui lòng đăng nhập trước khi lưu');
+        return;
     }
 
-    // Lấy giá trị từ các trường trong form
-    let userInfo = {
+    // Lấy dữ liệu từ các trường thông tin
+    const reportCardData_Ttin = {
         name: document.getElementById('name').value,
         dob: document.getElementById('dob').value,
         gender: document.getElementById('gender').value,
@@ -204,121 +188,133 @@ document.getElementById('save_thong_tin').addEventListener('click', function(eve
         districtCode12: document.getElementById('districtCode12').value,
     };
 
-    // Lưu dữ liệu vào Local Storage
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    // Tạo khóa duy nhất cho thông tin dựa trên CCCD
+    const storageKey_Ttin = `thong_tin_data_${loggedInCmnd}`;
 
-    // Đánh dấu là đã lưu
-    isSaved = true;
+    // Lưu dữ liệu vào localStorage
+    localStorage.setItem(storageKey_Ttin, JSON.stringify(reportCardData_Ttin));
+    showNotification('Thông tin cá nhân đã được lưu thành công!');
+    
+    // Đổi chữ nút lưu thành ĐÃ LƯU và vô hiệu hóa
+    const saveButton_Ttin = document.getElementById('save_thong_tin');
+    saveButton_Ttin.textContent = 'ĐÃ LƯU';
+    saveButton_Ttin.disabled = true;
+}
 
-    // Đổi văn bản nút thành "Đã Lưu" và vô hiệu hóa nút
-    const saveButton = document.getElementById('save_thong_tin');
-    saveButton.textContent = 'Đã Lưu';
-    saveButton.disabled = true; // Vô hiệu hóa nút
+// Hàm tải thông tin cá nhân
+function loadReportCard_Ttin() {
+    const loggedInCmnd = localStorage.getItem('loggedInCmnd'); // Lấy CCCD đã lưu sau khi đăng nhập
+    if (!loggedInCmnd) {
+        showNotification('Vui lòng đăng nhập để xem.');
+        return;
+    }
+    // Tạo khóa duy nhất cho học bạ dựa trên CCCD
+    const storageKey_Ttin = `thong_tin_data_${loggedInCmnd}`;
+    const savedData_Ttin = localStorage.getItem(storageKey_Ttin);
 
-    // Hiển thị thông báo thành công
-    alert('Thông tin cá nhân đã được lưu thành công!');
-});
+    if (savedData_Ttin) {
+        const reportCardData_Ttin = JSON.parse(savedData_Ttin);
 
-// Tải dữ liệu người dùng từ Local Storage khi trang được tải lại
-document.addEventListener('DOMContentLoaded', function () {
-    loadUserInfo();
-    checkIfSaved(); // Kiểm tra xem thông tin đã được lưu chưa
-});
-
-// Hàm load dữ liệu từ localStorage và gán vào form
-function loadUserInfo() {
-    const savedata_ttin = localStorage.getItem('userInfo');
-    if (savedata_ttin) {
-        const data_ttin = JSON.parse(savedata_ttin);
-
-        // Gán giá trị cho các trường input
-        document.getElementById('name').value = data_ttin.name || '';
-        document.getElementById('dob').value = data_ttin.dob || '';
-        document.getElementById('email').value = data_ttin.email || '';
-        document.getElementById('ethnicity').value = data_ttin.ethnicity || '';
-        document.getElementById('identity').value = data_ttin.identity || '';
-        document.getElementById('issueDate').value = data_ttin.issueDate || '';
-        document.getElementById('issuedBy').value = data_ttin.issuedBy || '';
-        document.getElementById('address').value = data_ttin.address || '';
-        document.getElementById('studentPhone').value = data_ttin.studentPhone || '';
-        document.getElementById('parentPhone').value = data_ttin.parentPhone || '';
-        document.getElementById('village').value = data_ttin.village || '';
-        document.getElementById('ward').value = data_ttin.ward || '';
+        document.getElementById('name').value = reportCardData_Ttin.name || '';
+        document.getElementById('dob').value = reportCardData_Ttin.dob || '';
+        document.getElementById('email').value = reportCardData_Ttin.email || '';
+        document.getElementById('ethnicity').value = reportCardData_Ttin.ethnicity || '';
+        document.getElementById('identity').value = reportCardData_Ttin.identity || '';
+        document.getElementById('issueDate').value = reportCardData_Ttin.issueDate || '';
+        document.getElementById('issuedBy').value = reportCardData_Ttin.issuedBy || '';
+        document.getElementById('address').value = reportCardData_Ttin.address || '';
+        document.getElementById('studentPhone').value = reportCardData_Ttin.studentPhone || '';
+        document.getElementById('parentPhone').value = reportCardData_Ttin.parentPhone || '';
+        document.getElementById('village').value = reportCardData_Ttin.village || '';
+        document.getElementById('ward').value = reportCardData_Ttin.ward || '';
 
         // Gán giá trị cho các trường select
         const genderSelect = document.getElementById('gender');
-        if (genderSelect) genderSelect.value = data_ttin.gender || '';
+        if (genderSelect) genderSelect.value = reportCardData_Ttin.gender || '';
 
         const religionSelect = document.getElementById('religion');
-        if (religionSelect) religionSelect.value = data_ttin.religion || '';
+        if (religionSelect) religionSelect.value = reportCardData_Ttin.religion || '';
 
         const provinceSelect = document.getElementById('province');
         if (provinceSelect) {
-            provinceSelect.value = data_ttin.province || '';
+            provinceSelect.value = reportCardData_Ttin.province || '';
 
             // Gán mã tỉnh
-            document.getElementById('provinceCode').value = data_ttin.provinceCode || '';
+            document.getElementById('provinceCode').value = reportCardData_Ttin.provinceCode || '';
 
             // Cập nhật huyện sau khi chọn tỉnh
             const districtSelect = document.getElementById('district');
             updateDistricts(provinceSelect.value, districtSelect, function() {
                 // Gán giá trị của huyện sau khi danh sách huyện được cập nhật
-                districtSelect.value = data_ttin.district || '';
+                districtSelect.value = reportCardData_Ttin.district || '';
             });
         }
 
         // Lớp 10
-        document.getElementById('schoolName10').value = data_ttin.schoolName10 || '';
-        document.getElementById('schoolProvinceCode10').value = data_ttin.schoolProvinceCode10 || ''; // Gán mã tỉnh lớp 10
-        document.getElementById('districtCode10').value = data_ttin.districtCode10 || '';
-        document.getElementById('schoolCode10').value = data_ttin.schoolCode10 || ''; // Gán mã trường lớp 10
+        document.getElementById('schoolName10').value = reportCardData_Ttin.schoolName10 || '';
+        document.getElementById('schoolProvinceCode10').value = reportCardData_Ttin.schoolProvinceCode10 || ''; // Gán mã tỉnh lớp 10
+        document.getElementById('districtCode10').value = reportCardData_Ttin.districtCode10 || '';
+        document.getElementById('schoolCode10').value = reportCardData_Ttin.schoolCode10 || ''; // Gán mã trường lớp 10
 
         const schoolProvince10Select = document.getElementById('schoolProvince10');
         if (schoolProvince10Select) {
-            schoolProvince10Select.value = data_ttin.schoolProvince10 || '';
+            schoolProvince10Select.value = reportCardData_Ttin.schoolProvince10 || '';
 
             // Cập nhật huyện cho lớp 10
             const schoolDistrict10Select = document.getElementById('schoolDistrict10');
             updateDistricts(schoolProvince10Select.value, schoolDistrict10Select, function() {
-                schoolDistrict10Select.value = data_ttin.schoolDistrict10 || '';
+                schoolDistrict10Select.value = reportCardData_Ttin.schoolDistrict10 || '';
             });
         }
 
         // Lớp 11
-        document.getElementById('schoolName11').value = data_ttin.schoolName11 || '';
-        document.getElementById('schoolProvinceCode11').value = data_ttin.schoolProvinceCode11 || ''; // Gán mã tỉnh lớp 11
-        document.getElementById('districtCode11').value = data_ttin.districtCode11 || '';
-        document.getElementById('schoolCode11').value = data_ttin.schoolCode11 || ''; // Gán mã trường lớp 11
+        document.getElementById('schoolName11').value = reportCardData_Ttin.schoolName11 || '';
+        document.getElementById('schoolProvinceCode11').value = reportCardData_Ttin.schoolProvinceCode11 || ''; // Gán mã tỉnh lớp 11
+        document.getElementById('districtCode11').value = reportCardData_Ttin.districtCode11 || '';
+        document.getElementById('schoolCode11').value = reportCardData_Ttin.schoolCode11 || ''; // Gán mã trường lớp 11
 
         const schoolProvince11Select = document.getElementById('schoolProvince11');
         if (schoolProvince11Select) {
-            schoolProvince11Select.value = data_ttin.schoolProvince11 || '';
+            schoolProvince11Select.value = reportCardData_Ttin.schoolProvince11 || '';
 
             // Cập nhật huyện cho lớp 11
             const schoolDistrict11Select = document.getElementById('schoolDistrict11');
             updateDistricts(schoolProvince11Select.value, schoolDistrict11Select, function() {
-                schoolDistrict11Select.value = data_ttin.schoolDistrict11 || '';
+                schoolDistrict11Select.value = reportCardData_Ttin.schoolDistrict11 || '';
             });
         }
 
         // Lớp 12
-        document.getElementById('schoolName12').value = data_ttin.schoolName12 || '';
-        document.getElementById('schoolProvinceCode12').value = data_ttin.schoolProvinceCode12 || ''; // Gán mã tỉnh lớp 12
-        document.getElementById('districtCode12').value = data_ttin.districtCode12 || '';
-        document.getElementById('schoolCode12').value = data_ttin.schoolCode12 || ''; // Gán mã trường lớp 12
+        document.getElementById('schoolName12').value = reportCardData_Ttin.schoolName12 || '';
+        document.getElementById('schoolProvinceCode12').value = reportCardData_Ttin.schoolProvinceCode12 || ''; // Gán mã tỉnh lớp 12
+        document.getElementById('districtCode12').value = reportCardData_Ttin.districtCode12 || '';
+        document.getElementById('schoolCode12').value = reportCardData_Ttin.schoolCode12 || ''; // Gán mã trường lớp 12
 
         const schoolProvince12Select = document.getElementById('schoolProvince12');
         if (schoolProvince12Select) {
-            schoolProvince12Select.value = data_ttin.schoolProvince12 || '';
+            schoolProvince12Select.value = reportCardData_Ttin.schoolProvince12 || '';
 
             // Cập nhật huyện cho lớp 12
             const schoolDistrict12Select = document.getElementById('schoolDistrict12');
             updateDistricts(schoolProvince12Select.value, schoolDistrict12Select, function() {
-                schoolDistrict12Select.value = data_ttin.schoolDistrict12 || '';
+                schoolDistrict12Select.value = reportCardData_Ttin.schoolDistrict12 || '';
             });
         }
-    }
 }
+}
+// Gán sự kiện cho nút lưu thông tin
+document.getElementById('save_thong_tin').addEventListener('click', function(event) {
+    event.preventDefault(); // Ngăn chặn hành động gửi form mặc định
+    saveReportCard_Ttin(); // Gọi hàm lưu thông tin
+});
+
+// Tải thông tin cá nhân khi trang được tải
+window.onload = function() {
+    if (localStorage.getItem('loggedInCmnd')) {
+        loadReportCard_Ttin(); // Tải thông tin cá nhân
+    }
+};
+
 
 // Hàm để cập nhật danh sách huyện dựa trên tỉnh đã chọn
 function updateDistricts(province, districtSelect, callback) {

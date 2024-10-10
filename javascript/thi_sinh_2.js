@@ -1,6 +1,18 @@
-// Hàm lưu dữ liệu vào Local Storage
-function savedataHba() {
-    const dataHba = {
+// Hàm hiển thị thông báo
+function showNotification(message) {
+    alert(message); // Thay thế bằng một thông báo tùy chỉnh nếu muốn
+}
+
+// Hàm lưu thông tin học bạ
+function saveReportCard() {
+    const loggedInCmnd = localStorage.getItem('loggedInCmnd'); // Lấy CCCD đã lưu sau khi đăng nhập
+    if (!loggedInCmnd) {
+        showNotification('Vui lòng đăng nhập trước khi lưu');
+        return;
+    }
+
+    // Lấy dữ liệu từ các trường học bạ
+    const reportCardData = {
         toan_ky1_lop11: document.getElementById('toan_ky1_lop11').value,
         toan_ky2_lop11: document.getElementById('toan_ky2_lop11').value,
         toan_ky1_lop12: document.getElementById('toan_ky1_lop12').value,
@@ -39,74 +51,83 @@ function savedataHba() {
         han_ky1_lop12: document.getElementById('han_ky1_lop12').value,
     };
 
-    // Lưu dữ liệu vào Local Storage
-    localStorage.setItem('hoc_ba_data', JSON.stringify(dataHba));
+    // Tạo khóa duy nhất cho học bạ dựa trên CCCD
+    const storageKey = `hoc_ba_data_${loggedInCmnd}`;
 
-    // Thay đổi chữ nút lưu
-    const saveButton = document.getElementById('save_hoc_ba');
-    if (saveButton) {
-        saveButton.textContent = 'Đã Lưu'; // Đổi chữ trên nút
-        saveButton.disabled = true; // Vô hiệu hóa nút
-    }
-
-    // Hiển thị thông báo thành công
-    alert('Thông tin học bạ đã được lưu thành công!');
+    // Lưu dữ liệu vào localStorage
+    localStorage.setItem(storageKey, JSON.stringify(reportCardData));
+    showNotification('Thông tin học bạ đã được lưu thành công!');
+    // Đổi chữ nút lưu thành ĐÃ LƯU và vô hiệu hóa
+    const saveButton_Ttin = document.getElementById('save_hoc_ba');
+    saveButton_Ttin.textContent = 'ĐÃ LƯU';
+    saveButton_Ttin.disabled = true;
 }
 
-// Hàm hiển thị dữ liệu từ Local Storage và kiểm tra trạng thái lưu
-function loadFormData_Hba() {
-    const savedData_Hba = localStorage.getItem('hoc_ba_data');
-    
-    if (savedData_Hba) {
-        const data_Hba = JSON.parse(savedData_Hba);
+// Hàm tải thông tin học bạ
+function loadReportCard() {
+    const loggedInCmnd = localStorage.getItem('loggedInCmnd'); // Lấy CCCD đã lưu sau khi đăng nhập
+    if (!loggedInCmnd) {
+        showNotification('Vui lòng đăng nhập để xem học bạ.');
+        return;
+    }
 
-        document.getElementById('toan_ky1_lop11').value = data_Hba.toan_ky1_lop11;
-        document.getElementById('toan_ky2_lop11').value = data_Hba.toan_ky2_lop11;
-        document.getElementById('toan_ky1_lop12').value = data_Hba.toan_ky1_lop12;
-        document.getElementById('ly_ky1_lop11').value = data_Hba.ly_ky1_lop11;
-        document.getElementById('ly_ky2_lop11').value = data_Hba.ly_ky2_lop11;
-        document.getElementById('ly_ky1_lop12').value = data_Hba.ly_ky1_lop12;
-        document.getElementById('hoa_ky1_lop11').value = data_Hba.hoa_ky1_lop11;
-        document.getElementById('hoa_ky2_lop11').value = data_Hba.hoa_ky2_lop11;
-        document.getElementById('hoa_ky1_lop12').value = data_Hba.hoa_ky1_lop12;
-        document.getElementById('sinh_ky1_lop11').value = data_Hba.sinh_ky1_lop11;
-        document.getElementById('sinh_ky2_lop11').value = data_Hba.sinh_ky2_lop11;
-        document.getElementById('sinh_ky1_lop12').value = data_Hba.sinh_ky1_lop12;
-        document.getElementById('van_ky1_lop11').value = data_Hba.van_ky1_lop11;
-        document.getElementById('van_ky2_lop11').value = data_Hba.van_ky2_lop11;
-        document.getElementById('van_ky1_lop12').value = data_Hba.van_ky1_lop12;
-        document.getElementById('su_ky1_lop11').value = data_Hba.su_ky1_lop11;
-        document.getElementById('su_ky2_lop11').value = data_Hba.su_ky2_lop11;
-        document.getElementById('su_ky1_lop12').value = data_Hba.su_ky1_lop12;
-        document.getElementById('dia_ky1_lop11').value = data_Hba.dia_ky1_lop11;
-        document.getElementById('dia_ky2_lop11').value = data_Hba.dia_ky2_lop11;
-        document.getElementById('dia_ky1_lop12').value = data_Hba.dia_ky1_lop12;
-        document.getElementById('anh_ky1_lop11').value = data_Hba.anh_ky1_lop11;
-        document.getElementById('anh_ky2_lop11').value = data_Hba.anh_ky2_lop11;
-        document.getElementById('anh_ky1_lop12').value = data_Hba.anh_ky1_lop12;
-        document.getElementById('gdcd_ky1_lop11').value = data_Hba.gdcd_ky1_lop11;
-        document.getElementById('gdcd_ky2_lop11').value = data_Hba.gdcd_ky2_lop11;
-        document.getElementById('gdcd_ky1_lop12').value = data_Hba.gdcd_ky1_lop12;
-        document.getElementById('nhat_ky1_lop11').value = data_Hba.nhat_ky1_lop11;
-        document.getElementById('nhat_ky2_lop11').value = data_Hba.nhat_ky2_lop11;
-        document.getElementById('nhat_ky1_lop12').value = data_Hba.nhat_ky1_lop12;
-        document.getElementById('trung_ky1_lop11').value = data_Hba.trung_ky1_lop11;
-        document.getElementById('trung_ky2_lop11').value = data_Hba.trung_ky2_lop11;
-        document.getElementById('trung_ky1_lop12').value = data_Hba.trung_ky1_lop12;
-        document.getElementById('han_ky1_lop11').value = data_Hba.han_ky1_lop11;
-        document.getElementById('han_ky2_lop11').value = data_Hba.han_ky2_lop11;
-        document.getElementById('han_ky1_lop12').value = data_Hba.han_ky1_lop12;
+    // Tạo khóa duy nhất cho học bạ dựa trên CCCD
+    const storageKey = `hoc_ba_data_${loggedInCmnd}`;
+    const savedData = localStorage.getItem(storageKey);
 
-        // Cập nhật trạng thái nút lưu
-        const saveButton = document.getElementById('save_hoc_ba');
-        if (saveButton) {
-            saveButton.textContent = 'ĐÃ LƯU'; // Đổi chữ trên nút
-            saveButton.disabled = true; // Vô hiệu hóa nút
-        }
+    if (savedData) {
+        const reportCardData = JSON.parse(savedData);
+
+        // Gán giá trị vào các trường tương ứng
+        document.getElementById('toan_ky1_lop11').value = reportCardData.toan_ky1_lop11;
+        document.getElementById('toan_ky2_lop11').value = reportCardData.toan_ky2_lop11;
+        document.getElementById('toan_ky1_lop12').value = reportCardData.toan_ky1_lop12;
+        document.getElementById('ly_ky1_lop11').value = reportCardData.ly_ky1_lop11;
+        document.getElementById('ly_ky2_lop11').value = reportCardData.ly_ky2_lop11;
+        document.getElementById('ly_ky1_lop12').value = reportCardData.ly_ky1_lop12;
+        document.getElementById('hoa_ky1_lop11').value = reportCardData.hoa_ky1_lop11;
+        document.getElementById('hoa_ky2_lop11').value = reportCardData.hoa_ky2_lop11;
+        document.getElementById('hoa_ky1_lop12').value = reportCardData.hoa_ky1_lop12;
+        document.getElementById('sinh_ky1_lop11').value = reportCardData.sinh_ky1_lop11;
+        document.getElementById('sinh_ky2_lop11').value = reportCardData.sinh_ky2_lop11;
+        document.getElementById('sinh_ky1_lop12').value = reportCardData.sinh_ky1_lop12;
+        document.getElementById('van_ky1_lop11').value = reportCardData.van_ky1_lop11;
+        document.getElementById('van_ky2_lop11').value = reportCardData.van_ky2_lop11;
+        document.getElementById('van_ky1_lop12').value = reportCardData.van_ky1_lop12;
+        document.getElementById('su_ky1_lop11').value = reportCardData.su_ky1_lop11;
+        document.getElementById('su_ky2_lop11').value = reportCardData.su_ky2_lop11;
+        document.getElementById('su_ky1_lop12').value = reportCardData.su_ky1_lop12;
+        document.getElementById('dia_ky1_lop11').value = reportCardData.dia_ky1_lop11;
+        document.getElementById('dia_ky2_lop11').value = reportCardData.dia_ky2_lop11;
+        document.getElementById('dia_ky1_lop12').value = reportCardData.dia_ky1_lop12;
+        document.getElementById('anh_ky1_lop11').value = reportCardData.anh_ky1_lop11;
+        document.getElementById('anh_ky2_lop11').value = reportCardData.anh_ky2_lop11;
+        document.getElementById('anh_ky1_lop12').value = reportCardData.anh_ky1_lop12;
+        document.getElementById('gdcd_ky1_lop11').value = reportCardData.gdcd_ky1_lop11;
+        document.getElementById('gdcd_ky2_lop11').value = reportCardData.gdcd_ky2_lop11;
+        document.getElementById('gdcd_ky1_lop12').value = reportCardData.gdcd_ky1_lop12;
+        document.getElementById('nhat_ky1_lop11').value = reportCardData.nhat_ky1_lop11;
+        document.getElementById('nhat_ky2_lop11').value = reportCardData.nhat_ky2_lop11;
+        document.getElementById('nhat_ky1_lop12').value = reportCardData.nhat_ky1_lop12;
+        document.getElementById('trung_ky1_lop11').value = reportCardData.trung_ky1_lop11;
+        document.getElementById('trung_ky2_lop11').value = reportCardData.trung_ky2_lop11;
+        document.getElementById('trung_ky1_lop12').value = reportCardData.trung_ky1_lop12;
+        document.getElementById('han_ky1_lop11').value = reportCardData.han_ky1_lop11;
+        document.getElementById('han_ky2_lop11').value = reportCardData.han_ky2_lop11;
+        document.getElementById('han_ky1_lop12').value = reportCardData.han_ky1_lop12;
+    } else {
+        showNotification('Chưa có dữ liệu học bạ được lưu.');
     }
 }
+// Gán sự kiện cho nút lưu học bạ
+document.getElementById('save_hoc_ba').addEventListener('click', function(event) {
+    event.preventDefault(); // Ngăn chặn hành động gửi form mặc định
+    saveReportCard(); // Gọi hàm lưu học bạ
+});
 
-// Gọi hàm loadFormData_Hba khi trang được tải
+// Tải thông tin học bạ khi trang được tải
 window.onload = function() {
-    loadFormData_Hba();
+    if (localStorage.getItem('loggedInCmnd')) {
+        loadReportCard(); // Tải thông tin học bạ
+    }
 };

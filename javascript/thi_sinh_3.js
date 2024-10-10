@@ -250,8 +250,6 @@ function loadWishes() {
                 blockSelect.value = wish.block;
             }
         });
-    } else {
-        alert('Không có nguyện vọng nào được lưu!');
     }
 }
 
