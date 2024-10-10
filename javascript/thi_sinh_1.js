@@ -194,7 +194,7 @@ function saveReportCard_Ttin() {
     // Lưu dữ liệu vào localStorage
     localStorage.setItem(storageKey_Ttin, JSON.stringify(reportCardData_Ttin));
     showNotification('Thông tin cá nhân đã được lưu thành công!');
-    
+
     // Đổi chữ nút lưu thành ĐÃ LƯU và vô hiệu hóa
     const saveButton_Ttin = document.getElementById('save_thong_tin');
     saveButton_Ttin.textContent = 'ĐÃ LƯU';
@@ -303,8 +303,7 @@ function loadReportCard_Ttin() {
 }
 }
 // Gán sự kiện cho nút lưu thông tin
-document.getElementById('save_thong_tin').addEventListener('click', function(event) {
-    event.preventDefault(); // Ngăn chặn hành động gửi form mặc định
+document.getElementById('save_thong_tin').addEventListener('click', function() {
     saveReportCard_Ttin(); // Gọi hàm lưu thông tin
 });
 
