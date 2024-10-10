@@ -602,7 +602,7 @@
             <div class="section" id="wish-1">
                 <div class="section-header">
                     <span>Nguyện vọng 1</span>
-                    <span class="delete-button" onclick="deleteWish('wish-1')">🗑️</span>
+                    <span class="delete-button" id="deleteWishbutton" onclick="deleteWish('wish-1')">🗑️</span>
                 </div>
                 <div class="input-group">
                     <label for="major1">Ngành/Chương trình đăng ký xét tuyển</label>
@@ -674,7 +674,7 @@
             <div class="section" id="wish-2">
                 <div class="section-header">
                     <span>Nguyện vọng 2</span>
-                    <span class="delete-button" onclick="deleteWish('wish-2')">🗑️</span>
+                    <span class="delete-button" id="deleteWishbutton" onclick="deleteWish('wish-2')">🗑️</span>
                 </div>
                 <div class="input-group">
                     <label for="major2">Ngành/Chương trình đăng ký xét tuyển</label>
@@ -746,7 +746,7 @@
             <div class="section" id="wish-3">
                 <div class="section-header">
                     <span>Nguyện vọng 3</span>
-                    <span class="delete-button" onclick="deleteWish('wish-3')">🗑️</span>
+                    <span class="delete-button" id="deleteWishbutton" onclick="deleteWish('wish-3')">🗑️</span>
                 </div>
                 <div class="input-group">
                     <label for="major3">Ngành/Chương trình đăng ký xét tuyển</label>
@@ -816,7 +816,7 @@
                 </div>
             </div>
         </div>
-		<button class="add-button" onclick="addWish()">THÊM NGUYỆN VỌNG</button>
+		<button class="add-button" id="addWishBtn" onclick="addWish()">THÊM NGUYỆN VỌNG</button>
         <button class="save-button" id="save_nguyen_vong">LƯU THAY ĐỔI</button>
         <div class="message" id="message"></div>
 		</form>

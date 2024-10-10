@@ -35,7 +35,7 @@ newWish.id = `wish-${wishCount}`;
 newWish.innerHTML = `
 	<div class="section-header">
 		<span>Nguyện vọng ${wishCount}</span>
-		<span class="delete-button" onclick="deleteWish('wish-${wishCount}')">🗑️</span>
+		<span class="delete-button" id="deleteWishbutton" onclick="deleteWish('wish-${wishCount}')">🗑️</span>
 	</div>
 	<div class="input-group">
 		<label for="major${wishCount}">Ngành/Chương trình đăng ký xét tuyển</label>
@@ -171,20 +171,26 @@ const blocks = {
 	'Y Học Cổ Truyền': ['A00 (Toán, Vật lý, Hóa học)','B00 (Toán, Hóa học, Sinh học)', 'B08 (Toán, Sinh học, Tiếng Anh)', 'D07 (Toán, Hóa học, Tiếng Anh)'],
 }
 function updateBlocks(selectMajor, selectBlock) {
-    selectMajor.addEventListener('change', function () {
-        const selectedMajor = this.value;
-        selectBlock.innerHTML = '<option value="">Chọn tổ hợp xét tuyển</option>';
-        
-        if (blocks[selectedMajor]) {
-            blocks[selectedMajor].forEach(block => {
-                const option = document.createElement('option');
-                option.value = block;
-                option.textContent = block;
-                selectBlock.appendChild(option);
-            });
-        }
+    const selectedMajor = selectMajor.value;
+    const blockOptions = blocks[selectedMajor] || []; // Lấy tổ hợp tương ứng với ngành đã chọn
+    selectBlock.innerHTML = ''; // Xóa các tùy chọn trước đó
+
+    blockOptions.forEach((block) => {
+        const option = document.createElement('option');
+        option.value = block;
+        option.textContent = block;
+        selectBlock.appendChild(option);
     });
 }
+
+// Lắng nghe sự thay đổi của lựa chọn ngành
+document.addEventListener('change', function(event) {
+    if (event.target.matches('select[id^="major"]')) {
+        const selectMajor = event.target;
+        const selectBlock = document.querySelector(`#block${selectMajor.id.replace('major', '')}`);
+        updateBlocks(selectMajor, selectBlock);
+    }
+});
 
 // Thiết lập cho các nguyện vọng hiện tại
 document.querySelectorAll('.section').forEach((section) => {
@@ -193,37 +199,86 @@ document.querySelectorAll('.section').forEach((section) => {
     updateBlocks(selectMajor, selectBlock);
 });
 
+// Lắng nghe sự kiện thay đổi ngành để cập nhật tổ hợp xét tuyển
+document.querySelectorAll('.section').forEach((section) => {
+    const majorSelect = section.querySelector('select[id^="major"]');
+    const blockSelect = section.querySelector('select[id^="block"]');
+
+    // Gọi hàm cập nhật khi ngành được thay đổi
+    majorSelect.addEventListener('change', function() {
+        updateBlocks(majorSelect, blockSelect);
+    });
+
+    // Khởi tạo danh sách tổ hợp xét tuyển dựa trên ngành hiện tại (nếu có)
+    updateBlocks(majorSelect, blockSelect);
+});
+
+// Hàm lưu nguyện vọng
 function saveWishes() {
-	const wishes = [];
-	const sections = document.querySelectorAll('.section');
-	sections.forEach(section => {
-		const majorSelect = section.querySelector('select[id^="major"]');
-		const blockSelect = section.querySelector('select[id^="block"]');
-		wishes.push({
-			major: majorSelect.value,
-			block: blockSelect.value
-		});
-	});
-	localStorage.setItem('wishes', JSON.stringify(wishes));
-	alert('Đã lưu nguyện vọng!');
+    const wishes = [];
+    const sections = document.querySelectorAll('.section');
+    
+    sections.forEach(section => {
+        const majorSelect = section.querySelector('select[id^="major"]');
+        const blockSelect = section.querySelector('select[id^="block"]');
+        wishes.push({
+            major: majorSelect.value,
+            block: blockSelect.value
+        });
+    });
+    
+    localStorage.setItem('wishes', JSON.stringify(wishes));
+    alert('Nguyện vọng đã được lưu thành công!');
 }
 
+// Hàm tải nguyện vọng từ localStorage
 function loadWishes() {
-	const savedWishes = JSON.parse(localStorage.getItem('wishes'));
-	if (savedWishes) {
-		savedWishes.forEach((wish, index) => {
-			if (index < 3) { // Chỉ cho phép tải tối đa 3 nguyện vọng
-				wishCount++;
-				addWish();
-				const currentWish = document.getElementById(`wish-${wishCount}`);
-				const majorSelect = currentWish.querySelector('select[id^="major"]');
-				const blockSelect = currentWish.querySelector('select[id^="block"]');
-				majorSelect.value = wish.major;
-				blockSelect.value = wish.block;
-			}
-		});
-		document.getElementById('message').textContent = ""; // Xóa thông báo
-	} else {
-		alert('Không có nguyện vọng nào được lưu!');
-	}
+    const savedWishes = JSON.parse(localStorage.getItem('wishes'));
+    
+    if (savedWishes) {
+        savedWishes.forEach((wish, index) => {
+            if (index < 3) { // Chỉ tải tối đa 3 nguyện vọng
+                const currentWish = document.getElementById(`wish-${index + 1}`);
+                const majorSelect = currentWish.querySelector('select[id^="major"]');
+                const blockSelect = currentWish.querySelector('select[id^="block"]');
+                majorSelect.value = wish.major;
+                
+                // Cập nhật danh sách tổ hợp xét tuyển dựa trên ngành đã chọn
+                updateBlocks(majorSelect, blockSelect);
+                
+                // Gán giá trị tổ hợp đã lưu
+                blockSelect.value = wish.block;
+            }
+        });
+    } else {
+        alert('Không có nguyện vọng nào được lưu!');
+    }
 }
+
+// Biến kiểm tra xem thông tin đã được lưu hay chưa
+let isSavedwish = false;
+
+// Hàm để kiểm tra xem thông tin đã được lưu chưa từ Local Storage
+function checkIfSavedwish() {
+    const savedata_ttin = localStorage.getItem('wishes');
+    if (savedata_ttin) {
+        isSaved = true;
+		document.getElementById('deleteWishbutton').style.display = 'none';
+		document.getElementById('deleteWishbutton').disabled = true; // Vô hiệu hóa nút
+		document.getElementById('addWishBtn').style.display = 'none'; // Đổi văn bản nút
+        document.getElementById('save_nguyen_vong').textContent = 'ĐÃ LƯU'; // Đổi văn bản nút
+        document.getElementById('save_nguyen_vong').disabled = true; // Vô hiệu hóa nút
+    }
+}
+
+
+// Gắn sự kiện lưu với nút lưu nguyện vọng
+document.getElementById('save_nguyen_vong').addEventListener('click', function() {
+    saveWishes();
+});
+
+// Tải nguyện vọng khi trang được tải
+document.addEventListener('DOMContentLoaded', function() {
+    loadWishes();
+	checkIfSavedwish();
+});
