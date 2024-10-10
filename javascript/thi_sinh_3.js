@@ -93,35 +93,40 @@ window.onload = function() {
     }
 };
 let wishCount = 3; // Đếm số nguyện vọng hiện tại
+  // Gán sự kiện cho nút "Thêm nguyện vọng"
+  document.getElementById('addWishBtn').addEventListener('click', function(event) {
+	event.preventDefault(); // Ngăn chặn hành vi mặc định nếu nút nằm trong một form
+	addWish(); // Gọi hàm thêm nguyện vọng
+});
 
 function deleteWish(wishId) {
-const wishElement = document.getElementById(wishId);
-if (wishElement) {
-	wishElement.remove();
-	updateWishes();
-}
-}
-
-function updateWishes() {
-const sections = document.querySelectorAll('.section');
-sections.forEach((section, index) => {
-	const header = section.querySelector('.section-header span:first-child');
-	header.textContent = `Nguyện vọng ${index + 1}`;
-	section.id = `wish-${index + 1}`;
-	const selectMajor = section.querySelector('select[id^="major"]');
-	selectMajor.id = `major${index + 1}`;
-	const selectBlock = section.querySelector('select[id^="block"]');
-	selectBlock.id = `block${index + 1}`;
-});
-wishCount = sections.length; // Cập nhật số lượng nguyện vọng
-document.getElementById('message').textContent = ""; // Xóa thông báo
-}
-
-function addWish() {
-if (wishCount >= 3) {
-	document.getElementById('message').textContent = "Chỉ được tối đa 3 nguyện vọng!";
-	return;
-}
+	const wishElement = document.getElementById(wishId);
+	if (wishElement) {
+		wishElement.remove();
+		updateWishes();
+	}
+	}
+	
+	function updateWishes() {
+	const sections = document.querySelectorAll('.section');
+	sections.forEach((section, index) => {
+		const header = section.querySelector('.section-header span:first-child');
+		header.textContent = `Nguyện vọng ${index + 1}`;
+		section.id = `wish-${index + 1}`;
+		const selectMajor = section.querySelector('select[id^="major"]');
+		selectMajor.id = `major${index + 1}`;
+		const selectBlock = section.querySelector('select[id^="block"]');
+		selectBlock.id = `block${index + 1}`;
+	});
+	wishCount = sections.length; // Cập nhật số lượng nguyện vọng
+	document.getElementById('message').textContent = ""; // Xóa thông báo
+	}
+	
+	function addWish() {
+	if (wishCount >= 3) {
+		document.getElementById('message').textContent = "Chỉ được tối đa 3 nguyện vọng!";
+		return;
+	}
 wishCount++;
 const newWish = document.createElement('div');
 newWish.classList.add('section');
@@ -197,8 +202,8 @@ newWish.innerHTML = `
 		</div>
 	</div>
 `;
-document.getElementById('addWishBtn').appendChild(newWish);
-    document.getElementById('message').textContent = ""; // Xóa thông báo
+	document.body.appendChild(newWish); // Thêm nguyện vọng vào body
+	document.getElementById('message').textContent = ""; // Xóa thông báo
     // Cập nhật khối ngành cho nguyện vọng mới
     const selectMajor = newWish.querySelector(`select[id="major${wishCount}"]`);
     const selectBlock = newWish.querySelector(`select[id="block${wishCount}"]`);
