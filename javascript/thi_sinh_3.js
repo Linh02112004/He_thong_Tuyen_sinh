@@ -1,3 +1,97 @@
+// Hàm hiển thị thông báo
+function showNotification(message) {
+    alert(message); // Thay thế bằng một thông báo tùy chỉnh nếu muốn
+}
+// Hàm lưu nguyện vọng
+function saveWishes() {
+    const loggedInCmnd = localStorage.getItem('loggedInCmnd'); // Lấy CCCD đã lưu sau khi đăng nhập
+    if (!loggedInCmnd) {
+        showNotification('Vui lòng đăng nhập trước khi lưu nguyện vọng');
+        return;
+    }
+
+    const wishes = [];
+    const sections = document.querySelectorAll('.section');
+    
+    sections.forEach(section => {
+        const majorSelect = section.querySelector('select[id^="major"]');
+        const blockSelect = section.querySelector('select[id^="block"]');
+        wishes.push({
+            major: majorSelect.value,
+            block: blockSelect.value
+        });
+    });
+
+    // Tạo khóa duy nhất cho nguyện vọng dựa trên CCCD
+    const storageKey_Nvong = `wishes_data_${loggedInCmnd}`;
+
+    // Lưu dữ liệu vào localStorage
+    localStorage.setItem(storageKey_Nvong, JSON.stringify(wishes));
+    showNotification('Nguyện vọng đã được lưu thành công!');
+    
+    // Đổi chữ nút lưu thành ĐÃ LƯU và vô hiệu hóa
+    //const saveButton_Wishes = document.getElementById('save_wishes');
+    //saveButton_Wishes.textContent = 'ĐÃ LƯU';
+    //saveButton_Wishes.disabled = true;
+}
+// Hàm tải nguyện vọng
+function loadWishes() {
+    const loggedInCmnd = localStorage.getItem('loggedInCmnd'); // Lấy CCCD đã lưu sau khi đăng nhập
+    if (!loggedInCmnd) {
+        showNotification('Vui lòng đăng nhập để xem nguyện vọng.');
+        return;
+    }
+
+    // Tạo khóa duy nhất cho nguyện vọng dựa trên CCCD
+    const storageKey_Nvong = `wishes_data_${loggedInCmnd}`;
+    const savedData_Nvong = localStorage.getItem(storageKey_Nvong);
+
+    if (savedData_Nvong) {
+        savedData_Nvong.forEach((wish, index) => {
+            if (index < 3) { // Chỉ tải tối đa 3 nguyện vọng
+                const currentWish = document.getElementById(`wish-${index + 1}`);
+                const majorSelect = currentWish.querySelector('select[id^="major"]');
+                const blockSelect = currentWish.querySelector('select[id^="block"]');
+                majorSelect.value = wish.major;
+                
+                // Cập nhật danh sách tổ hợp xét tuyển dựa trên ngành đã chọn
+                updateBlocks(majorSelect, blockSelect);
+                
+                // Gán giá trị tổ hợp đã lưu
+                blockSelect.value = wish.block;
+            }
+        });
+}}
+
+// Biến kiểm tra xem thông tin đã được lưu hay chưa
+let isSavedwish = false;
+
+// Hàm để kiểm tra xem thông tin đã được lưu chưa từ Local Storage
+function checkIfSavedwish() {
+    const savedata_ttin = localStorage.getItem(`wishes_data_${loggedInCmnd}`);
+    if (savedata_ttin) {
+        isSaved = true;
+		//document.getElementById('deleteWishbutton').style.display = 'none';
+		//document.getElementById('deleteWishbutton').disabled = true; // Vô hiệu hóa nút
+		//document.getElementById('addWishBtn').style.display = 'none'; // Đổi văn bản nút
+        //document.getElementById('save_nguyen_vong').textContent = 'ĐÃ LƯU'; // Đổi văn bản nút
+        //document.getElementById('save_nguyen_vong').disabled = true; // Vô hiệu hóa nút
+    }
+}
+
+
+// Gắn sự kiện lưu với nút lưu nguyện vọng
+document.getElementById('save_nguyen_vong').addEventListener('click', function(event) {
+	event.preventDefault(); // Ngăn chặn hành động gửi form mặc định
+    saveWishes();
+});
+
+// Tải nguyện vọng khi trang được tải
+window.onload = function() {
+    if (localStorage.getItem('loggedInCmnd')) {
+        loadReportCard(); 
+    }
+};
 let wishCount = 3; // Đếm số nguyện vọng hiện tại
 
 function deleteWish(wishId) {
@@ -103,7 +197,7 @@ newWish.innerHTML = `
 		</div>
 	</div>
 `;
-document.getElementById('wish-container').appendChild(newWish);
+document.getElementById('addWishBtn').appendChild(newWish);
     document.getElementById('message').textContent = ""; // Xóa thông báo
     // Cập nhật khối ngành cho nguyện vọng mới
     const selectMajor = newWish.querySelector(`select[id="major${wishCount}"]`);
@@ -183,6 +277,13 @@ function updateBlocks(selectMajor, selectBlock) {
     });
 }
 
+// Thiết lập cho các nguyện vọng hiện tại
+document.querySelectorAll('.section').forEach((section) => {
+    const selectMajor = section.querySelector('select[id^="major"]');
+    const selectBlock = section.querySelector('select[id^="block"]');
+    updateBlocks(selectMajor, selectBlock);
+});
+
 // Lắng nghe sự thay đổi của lựa chọn ngành
 document.addEventListener('change', function(event) {
     if (event.target.matches('select[id^="major"]')) {
@@ -192,20 +293,14 @@ document.addEventListener('change', function(event) {
     }
 });
 
-// Thiết lập cho các nguyện vọng hiện tại
-document.querySelectorAll('.section').forEach((section) => {
-    const selectMajor = section.querySelector('select[id^="major"]');
-    const selectBlock = section.querySelector('select[id^="block"]');
-    updateBlocks(selectMajor, selectBlock);
-});
-
 // Lắng nghe sự kiện thay đổi ngành để cập nhật tổ hợp xét tuyển
 document.querySelectorAll('.section').forEach((section) => {
     const majorSelect = section.querySelector('select[id^="major"]');
     const blockSelect = section.querySelector('select[id^="block"]');
 
     // Gọi hàm cập nhật khi ngành được thay đổi
-    majorSelect.addEventListener('change', function() {
+    majorSelect.addEventListener('change', function(event) {
+		event.preventDefault(); // Ngăn chặn hành động gửi form mặc định
         updateBlocks(majorSelect, blockSelect);
     });
 
@@ -213,92 +308,4 @@ document.querySelectorAll('.section').forEach((section) => {
     updateBlocks(majorSelect, blockSelect);
 });
 
-// Hàm lưu nguyện vọng
-function saveWishes() {
-    const loggedInCmnd = localStorage.getItem('loggedInCmnd'); // Lấy CCCD đã lưu sau khi đăng nhập
-    if (!loggedInCmnd) {
-        showNotification('Vui lòng đăng nhập trước khi lưu nguyện vọng');
-        return;
-    }
 
-    const wishes = [];
-    const sections = document.querySelectorAll('.section');
-    
-    sections.forEach(section => {
-        const majorSelect = section.querySelector('select[id^="major"]');
-        const blockSelect = section.querySelector('select[id^="block"]');
-        wishes.push({
-            major: majorSelect.value,
-            block: blockSelect.value
-        });
-    });
-
-    // Tạo khóa duy nhất cho nguyện vọng dựa trên CCCD
-    const storageKey_Nvong = `wishes_data_${loggedInCmnd}`;
-
-    // Lưu dữ liệu vào localStorage
-    localStorage.setItem(storageKey_Nvong, JSON.stringify(wishes));
-    showNotification('Nguyện vọng đã được lưu thành công!');
-    
-    // Đổi chữ nút lưu thành ĐÃ LƯU và vô hiệu hóa
-    //const saveButton_Wishes = document.getElementById('save_wishes');
-    //saveButton_Wishes.textContent = 'ĐÃ LƯU';
-    //saveButton_Wishes.disabled = true;
-}
-
-// Hàm tải nguyện vọng
-function loadWishes() {
-    const loggedInCmnd = localStorage.getItem('loggedInCmnd'); // Lấy CCCD đã lưu sau khi đăng nhập
-    if (!loggedInCmnd) {
-        showNotification('Vui lòng đăng nhập để xem nguyện vọng.');
-        return;
-    }
-
-    // Tạo khóa duy nhất cho nguyện vọng dựa trên CCCD
-    const storageKey_Nvong = `wishes_data_${loggedInCmnd}`;
-    const savedData_Nvong = localStorage.getItem(storageKey_Nvong);
-
-    if (savedData_Nvong) {
-        savedData_Nvong.forEach((wish, index) => {
-            if (index < 3) { // Chỉ tải tối đa 3 nguyện vọng
-                const currentWish = document.getElementById(`wish-${index + 1}`);
-                const majorSelect = currentWish.querySelector('select[id^="major"]');
-                const blockSelect = currentWish.querySelector('select[id^="block"]');
-                majorSelect.value = wish.major;
-                
-                // Cập nhật danh sách tổ hợp xét tuyển dựa trên ngành đã chọn
-                updateBlocks(majorSelect, blockSelect);
-                
-                // Gán giá trị tổ hợp đã lưu
-                blockSelect.value = wish.block;
-            }
-        });
-}}
-
-// Biến kiểm tra xem thông tin đã được lưu hay chưa
-let isSavedwish = false;
-
-// Hàm để kiểm tra xem thông tin đã được lưu chưa từ Local Storage
-function checkIfSavedwish() {
-    const savedata_ttin = localStorage.getItem(`wishes_data_${loggedInCmnd}`);
-    if (savedata_ttin) {
-        isSaved = true;
-		document.getElementById('deleteWishbutton').style.display = 'none';
-		document.getElementById('deleteWishbutton').disabled = true; // Vô hiệu hóa nút
-		document.getElementById('addWishBtn').style.display = 'none'; // Đổi văn bản nút
-        //document.getElementById('save_nguyen_vong').textContent = 'ĐÃ LƯU'; // Đổi văn bản nút
-        //document.getElementById('save_nguyen_vong').disabled = true; // Vô hiệu hóa nút
-    }
-}
-
-
-// Gắn sự kiện lưu với nút lưu nguyện vọng
-document.getElementById('save_nguyen_vong').addEventListener('click', function() {
-    saveWishes();
-});
-
-// Tải nguyện vọng khi trang được tải
-document.addEventListener('DOMContentLoaded', function() {
-    loadWishes();
-	checkIfSavedwish();
-});

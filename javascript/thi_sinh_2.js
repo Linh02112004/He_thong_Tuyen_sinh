@@ -58,9 +58,9 @@ function saveReportCard() {
     localStorage.setItem(storageKey, JSON.stringify(reportCardData));
     showNotification('Thông tin học bạ đã được lưu thành công!');
     // Đổi chữ nút lưu thành ĐÃ LƯU và vô hiệu hóa
-    const saveButton_Ttin = document.getElementById('save_hoc_ba');
-    saveButton_Ttin.textContent = 'ĐÃ LƯU';
-    saveButton_Ttin.disabled = true;
+    //const saveButton_Ttin = document.getElementById('save_hoc_ba');
+   // saveButton_Ttin.textContent = 'ĐÃ LƯU';
+   // saveButton_Ttin.disabled = true;
 }
 
 // Hàm tải thông tin học bạ
@@ -116,7 +116,7 @@ function loadReportCard() {
         document.getElementById('han_ky2_lop11').value = reportCardData.han_ky2_lop11;
         document.getElementById('han_ky1_lop12').value = reportCardData.han_ky1_lop12;
     } else {
-        showNotification('Chưa có dữ liệu học bạ được lưu.');
+       showNotification('Chưa có dữ liệu học bạ được lưu.');
     }
 }
 // Gán sự kiện cho nút lưu học bạ
